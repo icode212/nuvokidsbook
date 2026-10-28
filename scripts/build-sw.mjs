@@ -1,0 +1,11 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const bundles = (await readdir('dist/assets')).map(p => '/assets/' + p);
+const files = ['/', '/index.html', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', ...bundles];
+const hash = createHash('sha256');
+for (const file of files.filter(f => f !== '/')) hash.update(await readFile('dist' + file));
+const template = await readFile('src/services/sw-template.js', 'utf8');
+hash.update(template);
+const version = hash.digest('hex').slice(0, 12);
+await writeFile('dist/sw.js', template.replace('__SHELL_VERSION__', version).replace('__SHELL_FILES__', JSON.stringify(files)));
+console.log('Offline shell generated:', version);

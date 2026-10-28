@@ -1,0 +1,32 @@
+import 'fake-indexeddb/auto';
+import { afterEach, expect, it, vi } from 'vitest';
+import { farmBook } from '../../content-source/a-day-at-the-farm/book';
+import { database } from './storage';
+import { downloadBook, downloadRecord, removeDownload, savedMedia, type DownloadRecord } from './downloads';
+afterEach(() => vi.unstubAllGlobals());
+it('commits a verified complete pack and rejects corrupted replacement bytes', async () => {
+  const bytes = new TextEncoder().encode('image bytes');
+  const sha256 = [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+  const book = {...structuredClone(farmBook),narrationAssets:undefined,id:'integrity-book',cover:'/test.webp',scenes:[{...structuredClone(farmBook.scenes[0]),image:'/test.webp',objects:farmBook.scenes[0].objects.map(o=>({...o,soundFile:undefined}))}]};
+  const manifest = {bookId:book.id,contentVersion:book.contentVersion,assets:[{url:'/test.webp',bytes:bytes.length,sha256}]};
+  vi.stubGlobal('navigator',{serviceWorker:{getRegistration:async()=>({active:{}})}});
+  vi.stubGlobal('fetch',vi.fn(async(url:string)=>url === book.inventory ? new Response(JSON.stringify(manifest)) : new Response(bytes)));
+  await downloadBook(book,new AbortController().signal,()=>{});
+  expect((await downloadRecord(book.id))?.bytes).toBe(bytes.length);
+  expect(await (await savedMedia(book.id,'/test.webp'))!.text()).toBe('image bytes');
+  manifest.contentVersion = '0.4.0';
+  vi.stubGlobal('fetch',vi.fn(async(url:string)=>url === book.inventory ? new Response(JSON.stringify(manifest)) : new Response('corrupted')));
+  await expect(downloadBook({...book,contentVersion:'0.4.0'},new AbortController().signal,()=>{})).rejects.toThrow('integrity');
+  expect((await downloadRecord(book.id))?.version).toBe(book.contentVersion);
+  await removeDownload(book.id);
+});
+it('failed or interrupted updates preserve the old complete snapshot', async () => {
+  const record: DownloadRecord = { key:farmBook.id,version:'0.0.1',bytes:4,urls:['/old.webp'],book:{...farmBook,contentVersion:'0.0.1'},completedAt:new Date().toISOString() };
+  const db = await database(); await db.put('downloads',record); await db.put('media',new Blob(['old']),`${farmBook.id}@0.0.1:/old.webp`);
+  vi.stubGlobal('navigator',{serviceWorker:{getRegistration:async()=>({active:{}})}});
+  vi.stubGlobal('fetch',vi.fn(async()=>new Response(JSON.stringify({bookId:farmBook.id,contentVersion:'0.1.0',assets:[]}))));
+  await expect(downloadBook(farmBook,new AbortController().signal,()=>{})).rejects.toThrow();
+  expect((await downloadRecord(farmBook.id))?.version).toBe('0.0.1');
+  expect(await (await savedMedia(farmBook.id,'/old.webp'))!.text()).toBe('old');
+  await removeDownload(farmBook.id); expect(await downloadRecord(farmBook.id)).toBeUndefined();
+});

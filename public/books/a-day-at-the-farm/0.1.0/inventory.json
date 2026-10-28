@@ -1,0 +1,71 @@
+{
+  "bookId": "a-day-at-the-farm",
+  "contentVersion": "0.1.0",
+  "assets": [
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-01.webp",
+      "bytes": 372798,
+      "sha256": "859654921fe5bde64ee23cc17fadf24660e41ea6b356496f72ca6bfda31302b1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-02.webp",
+      "bytes": 388526,
+      "sha256": "11c9d262fcb25307f534d60f61d9c3554d7b4d100f44840ec30e4bea831b6afd"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-03.webp",
+      "bytes": 390220,
+      "sha256": "9fdf78418ba18926cd8492eba3f564b38de4a1afc012f84a15b0ecd284cacaee"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-04.webp",
+      "bytes": 390486,
+      "sha256": "99860eb918fa1754655829404e13cd321681d9e2eb9e4b7fea1fb8c0f2faf2c9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-05.webp",
+      "bytes": 377146,
+      "sha256": "3c7f9fdaa32caf164e785e58a2d3e242cec78d84752d1f7bfcaad1d43ede2f9e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-06.webp",
+      "bytes": 403044,
+      "sha256": "c1fc67e6e185d181883e8136f6a65862792b7207bf84be55747dce5725299130"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-07.webp",
+      "bytes": 414656,
+      "sha256": "5077a656de916df01675bc3ac0c7b94681d32ba3e43643b69f4fdcf8e74b12cb"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-08.webp",
+      "bytes": 442022,
+      "sha256": "3098509fab0aaf351738c8b461c5da1e22bb8c16a2157939d6951ad16a4c9847"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-09.webp",
+      "bytes": 468114,
+      "sha256": "8305d4f33502254b6d6b0bdd3d9e10bae927dffb67a3cbe9fd7bee3c4a5cf7d9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-10.webp",
+      "bytes": 463900,
+      "sha256": "5d2a295a3819a2991e93d583e9704f976c1b782a8b906128b1b0c8788bf56be1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-11.webp",
+      "bytes": 346742,
+      "sha256": "fcb5f718ffabfd92b5b77850756014cf031a8e5875ec22d54616c0cf8419e8cf"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-12.webp",
+      "bytes": 451508,
+      "sha256": "148ec88ea94c390c57ebf0254ff1a1c370478ce3afef4c6ce5c71d3fbdc05497"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/cover.webp",
+      "bytes": 173402,
+      "sha256": "0832ba8f106a07af7fd9ab33ff70e324496d356f6d3283ae8786ca55039213d3"
+    }
+  ]
+}
