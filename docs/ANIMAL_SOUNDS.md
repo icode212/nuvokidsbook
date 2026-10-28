@@ -1,4 +1,6 @@
-# Supplied farm recordings — version 0.8.0
+# Supplied farm recordings — version 0.9.0
+
+Version 0.9.0 removes the placeholder tone following the farmer's goodbye on page 12. The farmer tap plays only the existing Kokoro goodbye recording. The offline inventory reuses the unchanged 0.8.0 effect files and 0.4.0 narration; save the update to apply the corrected target metadata offline.
 
 Version 0.8.0 adds `Scratching Feet.wav` to the chicken page's Scratching feet target. Like the other effects it is delivered as mono 24 kHz AAC M4A at a 64 kbps target, included in the offline inventory. The source file is unchanged.
 

@@ -19,10 +19,10 @@ const page = (pageNumber: number, id: string, title: string, storyText: string, 
   })),
 });
 export const farmBook = bookSchema.parse({
-  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.8.0', title: 'A Day at the Farm',
+  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.9.0', title: 'A Day at the Farm',
   series: 'Nuvo & the Wonder Crew', creator: 'NuvoKids', summary: 'A little moo, a little peep, and a big discovery. Join the crew to find out what makes a happy farm.',
   locale: 'en-CA', ageRange: '2–5', kind: 'story', access: 'free', status: 'published', sortOrder: 0,
-  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.8.0/inventory.json', assetStatus: 'development', narrationAssets,
+  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.9.0/inventory.json', assetStatus: 'development', narrationAssets,
   scenes: [
     page(1, '01-welcome', 'Welcome to the Farm', 'The farm is waking up. What can we hear?', [
       ['birds', 'Birds', .015,.30,.105,.10,'Chirping birds','Wing lift','Where are the birds?','These are birds.'],
@@ -82,7 +82,7 @@ export const farmBook = bookSchema.parse({
     page(12, '12-goodbye', 'Goodbye for Now', '“Thank you, farm!” says Nuvo. “What did you discover today?”', [
       ['cow','Cow',.64,.255,.08,.12,'Moo','Head nod','Where is the cow?','This is a cow.'],
       ['sheep','Sheep',.69,.37,.11,.15,'Baa','Head lift','Where is the sheep?','This is a sheep.'],
-      ['farmer','Farmer',.775,.17,.13,.38,'Friendly goodbye','Wave','Where is the farmer?','Goodbye! Thank you for visiting the farm.'],
+      ['farmer','Farmer',.775,.17,.13,.38,null,'Wave','Where is the farmer?','Goodbye! Thank you for visiting the farm.'],
     ]),
   ],
 });
