@@ -1,4 +1,12 @@
-# Real farm animal calls — version 0.3.0
+# Supplied farm recordings — version 0.5.0
+
+Current effects come from `docs/animals-sound/`: `cow-moo.wav`, `Birds.wav`, `Ducks.wav`, `Chickens.wav`, `Horse.wav`, `Sheeps.mov` (audio extracted), and `Door.wav`. Hen and chick taps share the supplied chicken recording; calves and lambs share cow/sheep calls. Barn and shelter doors now use the supplied door recording. No narrator impersonations are included. Kokoro narration remains unchanged at version 0.4.0.
+
+`scripts/prepare-provided-effects.py --ffmpeg PATH` keeps the full recordings, converts to mono 24 kHz PCM16 WAV, reduces peaks above 0.45 and applies 20 ms edge fades. Originals are unchanged. The version 0.5.0 inventory verifies the complete 7.78 MB offline pack. Use **Grown-ups → Save update** for an existing offline copy.
+
+The current rights ledger records user-supplied provenance and source hashes; no external source/license was provided for these files. The CC0 sources below describe the previous pack only.
+
+## Historical version 0.3.0 (superseded)
 
 Animal taps in Explore now play the corresponding recorded call immediately. They do not first say “This is a cow” or imitate an animal with the narrator’s voice. Story narration and Find it questions remain separate human speech. The parent sound switch and reader mute control silence calls; the narration switch controls stories and spoken prompts.
 

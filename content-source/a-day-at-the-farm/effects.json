@@ -1,9 +1,10 @@
 {
-  "cow": "/books/a-day-at-the-farm/0.3.0/effects/cow.wav",
-  "birds": "/books/a-day-at-the-farm/0.3.0/effects/birds.wav",
-  "sheep": "/books/a-day-at-the-farm/0.3.0/effects/sheep.wav",
-  "ducks": "/books/a-day-at-the-farm/0.3.0/effects/ducks.wav",
-  "hen": "/books/a-day-at-the-farm/0.3.0/effects/hen.wav",
-  "chicks": "/books/a-day-at-the-farm/0.3.0/effects/chicks.wav",
-  "horse": "/books/a-day-at-the-farm/0.3.0/effects/horse.wav"
+  "cow": "/books/a-day-at-the-farm/0.5.0/effects/cow.wav",
+  "birds": "/books/a-day-at-the-farm/0.5.0/effects/birds.wav",
+  "sheep": "/books/a-day-at-the-farm/0.5.0/effects/sheep.wav",
+  "ducks": "/books/a-day-at-the-farm/0.5.0/effects/ducks.wav",
+  "hen": "/books/a-day-at-the-farm/0.5.0/effects/hen.wav",
+  "horse": "/books/a-day-at-the-farm/0.5.0/effects/horse.wav",
+  "door": "/books/a-day-at-the-farm/0.5.0/effects/door.wav",
+  "chicks": "/books/a-day-at-the-farm/0.5.0/effects/hen.wav"
 }

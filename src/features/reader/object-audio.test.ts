@@ -9,4 +9,6 @@ it('animal taps play their call directly without human identification speech', (
   }
   expect(farmBook.scenes[0].objects.find(o=>o.id === 'birds')?.soundFile).toContain('/effects/birds.wav');
   expect(farmBook.scenes[1].objects.find(o=>o.id === 'cow')?.soundFile).toContain('/effects/cow.wav');
+  expect(farmBook.scenes[0].objects.find(o=>o.id === 'barn-door')?.soundFile).toBe('/books/a-day-at-the-farm/0.5.0/effects/door.wav');
+  expect(farmBook.scenes[3].objects.find(o=>o.id === 'chicks')?.soundFile).toBe('/books/a-day-at-the-farm/0.5.0/effects/hen.wav');
 });

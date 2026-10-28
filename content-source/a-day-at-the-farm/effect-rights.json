@@ -1,72 +1,72 @@
 [
   {
-    "name": "cow",
-    "author": "spurioustransients",
-    "source": "https://freesound.org/people/spurioustransients/sounds/513557/",
-    "download": "https://cdn.freesound.org/previews/513/513557_2898771-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 2.624,
-    "sha256": "ebd16fdd29f537c6aa31c523988ff5c05503306fef2fea45065b3154b14fd970"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/cow.wav",
+    "bytes": 316106,
+    "sha256": "e4c2159f4a70b7eaea96d7c1fd93e18771c833b5ccc823023c47e55d8479a0e7",
+    "source": "docs/animals-sound/cow-moo.wav",
+    "sourceSha256": "a2fcb529cd2bc3b5bcff0e664eb117838ef33e2081a711c8559a0f95fb3d553a",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 6.585
   },
   {
-    "name": "birds",
-    "author": "FartMuffin",
-    "source": "https://freesound.org/people/FartMuffin/sounds/506285/",
-    "download": "https://cdn.freesound.org/previews/506/506285_10643288-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 1.885,
-    "sha256": "167f4d468d562188e2c1da4fe8e8f11fbbb0663af0d6f9af4c741d2b5a4884fd"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/birds.wav",
+    "bytes": 728754,
+    "sha256": "1f83f7f42c12d839fdc27b4110ab4539b911936b7a923b7d86794f1631c23c9d",
+    "source": "docs/animals-sound/Birds.wav",
+    "sourceSha256": "32fa67d8cb1219068df3ba6d67f6004f1a76b0aa00d99b975b523ec1e8fa7d2a",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 15.181
   },
   {
-    "name": "sheep",
-    "author": "michaelperfect",
-    "source": "https://freesound.org/people/michaelperfect/sounds/710296/",
-    "download": "https://cdn.freesound.org/previews/710/710296_201532-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 1.1,
-    "sha256": "c5fdf0c40f7b940986b0fc73daecd51af48910a4611e98d88388cec5f93ca4cb"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/sheep.wav",
+    "bytes": 507948,
+    "sha256": "2f1caa8b0d9050a41803e278f5c1dbc1403be09c2c3880a9be8a15f21082deff",
+    "source": "docs/animals-sound/Sheeps.mov",
+    "sourceSha256": "95a6612352e5af362f986f0d8541af3b362c0f38537ab3217d3d0e28e16163ed",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 10.581
   },
   {
-    "name": "ducks",
-    "author": "gibarroule",
-    "source": "https://freesound.org/people/gibarroule/sounds/365133/",
-    "download": "https://cdn.freesound.org/previews/365/365133_6659813-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 3.2,
-    "sha256": "978bd7d8d59885fe1eaad90e1946429d08c20ee732b847b88052e621e7be6fa2"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/ducks.wav",
+    "bytes": 57776,
+    "sha256": "d7774342b51e764d48522026cd419973dc58cb1c57e3bd68ad0851ef4a2b610a",
+    "source": "docs/animals-sound/Ducks.wav",
+    "sourceSha256": "459496f2a5e582d7031d8c6af506b68201d4cb4a37c7747d0881572894006f14",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 1.203
   },
   {
-    "name": "hen",
-    "author": "Breviceps",
-    "source": "https://freesound.org/people/Breviceps/sounds/456803/",
-    "download": "https://cdn.freesound.org/previews/456/456803_9159316-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 3.2,
-    "sha256": "7f76a96a99e0e616b8a15db14a320e9f1b11a9db85bef1441398ae32d21c97b4"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/hen.wav",
+    "bytes": 230514,
+    "sha256": "89d4bb6ed0cd5e8fd3125745e160f6bed41f82c41fbf3040c0be3498ef565eb2",
+    "source": "docs/animals-sound/Chickens.wav",
+    "sourceSha256": "bc8f2d4f37b8375d6b6054c6e174859a8f297668e56522445ffc613c49b8b4b9",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 4.801
   },
   {
-    "name": "chicks",
-    "author": "AGFX",
-    "source": "https://freesound.org/people/AGFX/sounds/43380/",
-    "download": "https://cdn.freesound.org/previews/43/43380_50975-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 2.7,
-    "sha256": "961ee7f7668fc633531d2b8bfa9011b88f5e07a39a04cf82496eb6bb2d59c61e"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/horse.wav",
+    "bytes": 129484,
+    "sha256": "0a8516cb8b02444d041644ba87a62b0978f2a97aa35c479019683a89d8b8ebd3",
+    "source": "docs/animals-sound/Horse.wav",
+    "sourceSha256": "865b4c2ecd6987c4eeb98d1b5e1b70775bcff0afa10c866bc0e5d8e9063bde7a",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 2.697
   },
   {
-    "name": "horse",
-    "author": "dontwanttobehere",
-    "source": "https://freesound.org/people/dontwanttobehere/sounds/656661/",
-    "download": "https://cdn.freesound.org/previews/656/656661_14434814-hq.mp3",
-    "license": "CC0-1.0",
-    "changes": "Short excerpt, mono 22050 Hz PCM, level reduction, 40 ms fades",
-    "duration": 4.0,
-    "sha256": "f673d51a2bdead579dd770b4a49c2c7e598740af479ae7773bc9f52279eca58a"
+    "url": "/books/a-day-at-the-farm/0.5.0/effects/door.wav",
+    "bytes": 288032,
+    "sha256": "4565cd1a6ac7c19090382ef08d53d65cfa9ab7e36118296da9f910b10d9b0fe6",
+    "source": "docs/animals-sound/Door.wav",
+    "sourceSha256": "255de5613fc9b2e3d45f293a4faa9c5ec536c592700870ff66fb33ce4800e3a3",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 6.0
   }
 ]
