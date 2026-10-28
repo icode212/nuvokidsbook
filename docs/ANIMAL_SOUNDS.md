@@ -1,4 +1,6 @@
-# Supplied farm recordings — version 0.6.0
+# Supplied farm recordings — version 0.7.0
+
+Version 0.7.0 uses `cow-moo2.wav` for the cow and dedicated `Calf.wav` / `Lamb.wav` recordings. All ten effects are now compact mono 24 kHz AAC M4A targeting 64 kbps, retaining full recording durations and the existing level reduction/edge fades. Source files remain untouched. Story narration remains the approved Kokoro pack. The complete offline pack is 6.11 MB. The statements below describe earlier versions.
 
 Version 0.6.0 adds the separate `Hen.wav` for hen taps. Chick taps keep `Chickens.wav`; dedicated chick, calf and lamb calls are not yet supplied. The 0.6.0 inventory contains eight supplied effects and unchanged Kokoro narration.
 

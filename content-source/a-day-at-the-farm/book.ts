@@ -3,7 +3,7 @@ import narrationAssets from './narration.json' with { type: 'json' };
 import effects from './effects.json' with { type: 'json' };
 
 const animalEffects: Record<string, string> = { 'Moo': 'cow', 'Soft calf call': 'cow', 'Chirping birds': 'birds', 'Baa': 'sheep', 'Soft baa': 'sheep', 'Quiet sheep call': 'sheep', 'Cluck': 'hen', 'Peep': 'chicks', 'Peeping chicks': 'chicks', 'Quack': 'ducks', 'Soft neigh': 'horse' };
-const animalIds: Record<string, string> = { cow: 'cow', calf: 'cow', birds: 'birds', sheep: 'sheep', lamb: 'sheep', ducks: 'ducks', hen: 'hen', chick: 'chicks', chicks: 'chicks', family: 'chicks', horse: 'horse', 'barn-door': 'door', door: 'door' };
+const animalIds: Record<string, string> = { cow: 'cow', calf: 'calf', birds: 'birds', sheep: 'sheep', lamb: 'lamb', ducks: 'ducks', hen: 'hen', chick: 'chicks', chicks: 'chicks', family: 'chicks', horse: 'horse', 'barn-door': 'door', door: 'door' };
 
 type TargetInput = [string, string, number, number, number, number, string | null, string, string | null, string?];
 function target([id, label, x, y, width, height, sound, productionMotion, findPrompt, transcript]: TargetInput): Target {
@@ -19,10 +19,10 @@ const page = (pageNumber: number, id: string, title: string, storyText: string, 
   })),
 });
 export const farmBook = bookSchema.parse({
-  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.6.0', title: 'A Day at the Farm',
+  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.7.0', title: 'A Day at the Farm',
   series: 'Nuvo & the Wonder Crew', creator: 'NuvoKids', summary: 'A little moo, a little peep, and a big discovery. Join the crew to find out what makes a happy farm.',
   locale: 'en-CA', ageRange: '2–5', kind: 'story', access: 'free', status: 'published', sortOrder: 0,
-  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.6.0/inventory.json', assetStatus: 'development', narrationAssets,
+  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.7.0/inventory.json', assetStatus: 'development', narrationAssets,
   scenes: [
     page(1, '01-welcome', 'Welcome to the Farm', 'The farm is waking up. What can we hear?', [
       ['birds', 'Birds', .015,.30,.105,.10,'Chirping birds','Wing lift','Where are the birds?','These are birds.'],

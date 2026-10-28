@@ -7,9 +7,9 @@ it('animal taps play their call directly without human identification speech', (
     expect(objectAudioCue(target,true,true)).toEqual({text:null,sound:target.soundFile});
     expect(objectAudioCue(target,true,false)).toEqual({text:null,sound:false});
   }
-  expect(farmBook.scenes[0].objects.find(o=>o.id === 'birds')?.soundFile).toContain('/effects/birds.wav');
-  expect(farmBook.scenes[1].objects.find(o=>o.id === 'cow')?.soundFile).toContain('/effects/cow.wav');
-  expect(farmBook.scenes[0].objects.find(o=>o.id === 'barn-door')?.soundFile).toBe('/books/a-day-at-the-farm/0.6.0/effects/door.wav');
-  expect(farmBook.scenes[3].objects.find(o=>o.id === 'chicks')?.soundFile).toBe('/books/a-day-at-the-farm/0.6.0/effects/chicks.wav');
-  expect(farmBook.scenes[3].objects.find(o=>o.id === 'hen')?.soundFile).toBe('/books/a-day-at-the-farm/0.6.0/effects/hen.wav');
+  expect(farmBook.scenes[0].objects.find(o=>o.id === 'birds')?.soundFile).toContain('/effects/birds.m4a');
+  expect(farmBook.scenes[1].objects.find(o=>o.id === 'cow')?.soundFile).toContain('/effects/cow.m4a');
+  for (const [page, id, file] of [[0,'barn-door','door'], [1,'calf','calf'], [2,'lamb','lamb'], [3,'chicks','chicks'], [3,'hen','hen']] as const) {
+    expect(farmBook.scenes[page].objects.find(o=>o.id === id)?.soundFile).toBe(`/books/a-day-at-the-farm/0.7.0/effects/${file}.m4a`);
+  }
 });

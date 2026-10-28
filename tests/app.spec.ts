@@ -17,7 +17,7 @@ test('anonymous story, all pages, explore, find it and small-screen geometry', a
   await page.setViewportSize({width:390,height:844});
   const spokenRequests: string[] = [];
   page.on('request', r => { if(r.url().includes('/audio/')) spokenRequests.push(r.url()); });
-  const birdCall = page.waitForResponse(r => r.url().endsWith('/effects/birds.wav'));
+  const birdCall = page.waitForResponse(r => r.url().endsWith('/effects/birds.m4a'));
   await page.getByRole('button',{name:'Birds',exact:true}).click();
   expect((await birdCall).ok()).toBe(true);
   expect(spokenRequests).toHaveLength(0);
