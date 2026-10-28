@@ -2,7 +2,7 @@
 
 The hero uses the supplied `docs/characters/Wonder-Crew.png`, converted without cropping to a 1200×800 WebP. The original source stays intact. The farm book cover remains on its bookshelf card.
 
-Children can choose **Meet the crew** for a 14-second introduction or tap Nuvo, Milo, Lina, Pip or Mimi for a short individual introduction. Character descriptions follow `docs/characters/characters.md`. There is no autoplay, trailing effect or animal impersonation. A visible transcript accompanies playback.
+Children can tap each character directly in the portrait for a short individual introduction, or choose **Meet the crew** for a 14-second introduction. Responsive tap areas follow the portrait; Pip and Mimi's foreground tap areas take priority over the children behind them. The selected character is outlined and named while speaking. Name buttons below the image provide another accessible way to play the same introductions. Character descriptions follow `docs/characters/characters.md`. There is no autoplay, trailing effect or animal impersonation. A visible transcript accompanies playback.
 
 All six clips use the approved Kokoro-82M v1.0 `af_heart`, `en-us`, speed 0.82, +1 semitone, mono AAC M4A targeting 32 kbps. Generate with `scripts/prepare-crew.py --model PATH --voices PATH --ffmpeg PATH`, using the same Python environment as the book narration. Per-clip manifests record exact transcripts, settings, hashes, durations and source-code provenance.
 
