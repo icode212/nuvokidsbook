@@ -37,8 +37,6 @@ export function CrewIntroduction({ settings, paused }: { settings: Settings; pau
         aria-label={`Meet ${friend.name} in the picture`} aria-pressed={active === friend.id} disabled={!enabled}
         onClick={() => void play(friend.id, friend.text)}><span>{friend.name}</span></button>)}
     </div>
-    <div className="crew-friends">{crew.friends.map(friend => <button key={friend.id} className="crew-name"
-      aria-label={`Meet ${friend.name}`} aria-pressed={active === friend.id} disabled={!enabled} onClick={() => void play(friend.id, friend.text)}><Volume2 size={13}/>{friend.name}</button>)}</div>
     <div className="crew-controls"><button className="button quiet compact" disabled={!enabled} aria-pressed={active === 'crew'} onClick={() => void play('crew', crew.intro.text)}>{active === 'crew' ? <Square size={16}/> : <Headphones size={18}/>} {active === 'crew' ? 'Stop introduction' : 'Meet the crew'}</button>
       <button className="icon-button" aria-label={muted ? 'Unmute introductions' : 'Mute introductions'} aria-pressed={muted} onClick={() => setMuted(value => !value)}>{muted ? <VolumeX size={19}/> : <Volume2 size={19}/>}</button>
       <span>Tap a friend in the picture to say hello.</span></div>

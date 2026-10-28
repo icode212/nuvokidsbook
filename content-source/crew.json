@@ -6,6 +6,6 @@
     { "id": "milo", "name": "Milo", "text": "This is Milo. Milo wears blue glasses and likes to look closely.", "audio": "/crew/1.0.0/milo.m4a", "rect": { "x": 21, "y": 25, "width": 18.5, "height": 63 }, "layer": 1 },
     { "id": "lina", "name": "Lina", "text": "This is Lina. Lina has a yellow backpack and wonderful ideas.", "audio": "/crew/1.0.0/lina.m4a", "rect": { "x": 57.5, "y": 24, "width": 22, "height": 64 }, "layer": 1 },
     { "id": "pip", "name": "Pip", "text": "This is Pip, our curious puppy with floppy ears.", "audio": "/crew/1.0.0/pip.m4a", "rect": { "x": 35.5, "y": 60.5, "width": 17.5, "height": 32 }, "layer": 2 },
-    { "id": "mimi", "name": "Mimi", "text": "This is Mimi, our curious kitten with soft grey fur.", "audio": "/crew/1.0.0/mimi.m4a", "rect": { "x": 52.5, "y": 63.5, "width": 17, "height": 29.5 }, "layer": 2 }
+    { "id": "mimi", "name": "Mimi", "text": "This is Mimi, our curious kitten with soft grey fur.", "audio": "/crew/1.0.0/mimi.m4a", "rect": { "x": 53.5, "y": 63.5, "width": 13.5, "height": 29.5 }, "layer": 2 }
   ]
 }

@@ -9,6 +9,8 @@ test('anonymous story, all pages, explore, find it and small-screen geometry', a
   await page.setViewportSize({width:390,height:844}); await page.goto('/');
   await expect(page.getByRole('heading',{name:'Your little bookshelf'})).toBeVisible();
   await expect(page.getByRole('img',{name:/The Wonder Crew: Milo/})).toBeVisible();
+  await expect(page.locator('.crew-name')).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Meet the crew',exact:true})).toBeVisible();
   for (const name of ['Nuvo','Milo','Lina','Pip','Mimi']) {
     const target = page.getByRole('button',{name:`Meet ${name} in the picture`,exact:true});
     const bounds = await target.boundingBox();
@@ -82,7 +84,7 @@ test('parent gate, persistent settings, book download and offline reopen', async
     await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0)).toBeGreaterThan(count);
   }
   await page.getByRole('button',{name:'Mute introductions',exact:true}).click();
-  await expect(page.getByRole('button',{name:'Meet Nuvo',exact:true})).toBeDisabled();
+  await expect(page.getByRole('button',{name:'Meet Nuvo in the picture',exact:true})).toBeDisabled();
   await page.getByRole('button',{name:'Unmute introductions',exact:true}).click();
   const beforeCrew = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0);
   await page.getByRole('button',{name:'Meet the crew',exact:true}).click();
