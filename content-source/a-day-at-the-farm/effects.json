@@ -1,12 +1,13 @@
 {
-  "cow": "/books/a-day-at-the-farm/0.7.0/effects/cow.m4a",
-  "calf": "/books/a-day-at-the-farm/0.7.0/effects/calf.m4a",
-  "lamb": "/books/a-day-at-the-farm/0.7.0/effects/lamb.m4a",
-  "birds": "/books/a-day-at-the-farm/0.7.0/effects/birds.m4a",
-  "sheep": "/books/a-day-at-the-farm/0.7.0/effects/sheep.m4a",
-  "ducks": "/books/a-day-at-the-farm/0.7.0/effects/ducks.m4a",
-  "hen": "/books/a-day-at-the-farm/0.7.0/effects/hen.m4a",
-  "chicks": "/books/a-day-at-the-farm/0.7.0/effects/chicks.m4a",
-  "horse": "/books/a-day-at-the-farm/0.7.0/effects/horse.m4a",
-  "door": "/books/a-day-at-the-farm/0.7.0/effects/door.m4a"
+  "cow": "/books/a-day-at-the-farm/0.8.0/effects/cow.m4a",
+  "calf": "/books/a-day-at-the-farm/0.8.0/effects/calf.m4a",
+  "lamb": "/books/a-day-at-the-farm/0.8.0/effects/lamb.m4a",
+  "birds": "/books/a-day-at-the-farm/0.8.0/effects/birds.m4a",
+  "sheep": "/books/a-day-at-the-farm/0.8.0/effects/sheep.m4a",
+  "ducks": "/books/a-day-at-the-farm/0.8.0/effects/ducks.m4a",
+  "hen": "/books/a-day-at-the-farm/0.8.0/effects/hen.m4a",
+  "chicks": "/books/a-day-at-the-farm/0.8.0/effects/chicks.m4a",
+  "horse": "/books/a-day-at-the-farm/0.8.0/effects/horse.m4a",
+  "door": "/books/a-day-at-the-farm/0.8.0/effects/door.m4a",
+  "scratching-feet": "/books/a-day-at-the-farm/0.8.0/effects/scratching-feet.m4a"
 }

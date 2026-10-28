@@ -1,6 +1,6 @@
 [
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/cow.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/cow.m4a",
     "bytes": 14342,
     "sha256": "1cf9666ea6dccab788eaeb12bba15fffbfc4b1e905dab5cc29d07954a77668bd",
     "source": "docs/animals-sound/cow-moo2.wav",
@@ -10,7 +10,7 @@
     "durationSeconds": 1.673
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/calf.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/calf.m4a",
     "bytes": 91251,
     "sha256": "64739d50c27d913cf9910acf74067ae41fb10dc7ac4c2ad350ee63288c7532d1",
     "source": "docs/animals-sound/Calf.wav",
@@ -20,7 +20,7 @@
     "durationSeconds": 11.309
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/lamb.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/lamb.m4a",
     "bytes": 41025,
     "sha256": "5d6601c31067f35a7d6619327dacea277a6464154d2539824bdef63861ed3410",
     "source": "docs/animals-sound/Lamb.wav",
@@ -30,7 +30,7 @@
     "durationSeconds": 4.697
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/birds.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/birds.m4a",
     "bytes": 122349,
     "sha256": "325410938839d4c6e761493a3991206934e6decb6ec353bd4592832d8e0742ff",
     "source": "docs/animals-sound/Birds.wav",
@@ -40,7 +40,7 @@
     "durationSeconds": 15.181
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/sheep.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/sheep.m4a",
     "bytes": 86942,
     "sha256": "0919d2418866b06fd0076958942dab5742532c17a55d8cf105baa1199ab55203",
     "source": "docs/animals-sound/Sheeps.mov",
@@ -50,7 +50,7 @@
     "durationSeconds": 10.581
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/ducks.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/ducks.m4a",
     "bytes": 10735,
     "sha256": "d08f2cf1a1393b271dec4bf881a93e9ffe2dddf354298f10d8d5bf1cb91d3847",
     "source": "docs/animals-sound/Ducks.wav",
@@ -60,7 +60,7 @@
     "durationSeconds": 1.203
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/hen.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/hen.m4a",
     "bytes": 26855,
     "sha256": "0a5ecb23a527afb0b8caea00e4e6ed04a3f30216b2a00d6fd24f27d8031a72af",
     "source": "docs/animals-sound/Hen.wav",
@@ -70,7 +70,7 @@
     "durationSeconds": 3.268
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/chicks.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/chicks.m4a",
     "bytes": 41152,
     "sha256": "46d6c7e4ec5aedb665ff6c2ebb6f65733b78894edc8eebbcec667d8af131e05f",
     "source": "docs/animals-sound/Chickens.wav",
@@ -80,7 +80,7 @@
     "durationSeconds": 4.801
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/horse.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/horse.m4a",
     "bytes": 21096,
     "sha256": "8c41beb7a9275d14f17e2d8005cfa8b9e7b2d4931529e70357638e2745e7a0b0",
     "source": "docs/animals-sound/Horse.wav",
@@ -90,7 +90,7 @@
     "durationSeconds": 2.697
   },
   {
-    "url": "/books/a-day-at-the-farm/0.7.0/effects/door.m4a",
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/door.m4a",
     "bytes": 49213,
     "sha256": "eea5d6dab3506b919501352468282756796edbc159cb35a75537d9266ed6a4e4",
     "source": "docs/animals-sound/Door.wav",
@@ -98,5 +98,15 @@
     "provenance": "User supplied; external source and license not specified",
     "changes": "Full audio, mono 24 kHz AAC M4A targeting 64 kbps, peak reduction only, 20 ms edge fades",
     "durationSeconds": 6.0
+  },
+  {
+    "url": "/books/a-day-at-the-farm/0.8.0/effects/scratching-feet.m4a",
+    "bytes": 74982,
+    "sha256": "85ac352b4b910c54860e2b2ce06b4ecf42b7414b10ecd2a1d8d4e479f4db0904",
+    "source": "docs/animals-sound/Scratching Feet.wav",
+    "sourceSha256": "5d53bb6147d5e75005c9d8e90bebc210c09b2ee9f1b9be60ddf681ce2209b68e",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz AAC M4A targeting 64 kbps, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 8.792
   }
 ]

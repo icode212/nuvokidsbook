@@ -1,4 +1,6 @@
-# Supplied farm recordings — version 0.7.0
+# Supplied farm recordings — version 0.8.0
+
+Version 0.8.0 adds `Scratching Feet.wav` to the chicken page's Scratching feet target. Like the other effects it is delivered as mono 24 kHz AAC M4A at a 64 kbps target, included in the offline inventory. The source file is unchanged.
 
 Version 0.7.0 uses `cow-moo2.wav` for the cow and dedicated `Calf.wav` / `Lamb.wav` recordings. All ten effects are now compact mono 24 kHz AAC M4A targeting 64 kbps, retaining full recording durations and the existing level reduction/edge fades. Source files remain untouched. Story narration remains the approved Kokoro pack. The complete offline pack is 6.11 MB. The statements below describe earlier versions.
 

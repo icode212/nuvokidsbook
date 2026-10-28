@@ -27,6 +27,11 @@ test('anonymous story, all pages, explore, find it and small-screen geometry', a
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.setViewportSize({width:390,height:844});
   await page.getByRole('button',{name:'Pages',exact:true}).click();
+  await page.getByRole('button',{name:'4. A Busy Chicken',exact:true}).click();
+  const scratching = page.waitForResponse(r => r.url().endsWith('/effects/scratching-feet.m4a'));
+  await page.getByRole('button',{name:'Scratching feet',exact:true}).click();
+  expect((await scratching).ok()).toBe(true);
+  await page.getByRole('button',{name:'Pages',exact:true}).click();
   await page.getByRole('button',{name:'12. Goodbye for Now',exact:true}).click();
   await expect(page.getByRole('button',{name:'Farmer',exact:true})).toBeVisible();
   await page.locator('.reader-navigation').getByRole('button',{name:'Bookshelf',exact:true}).click();

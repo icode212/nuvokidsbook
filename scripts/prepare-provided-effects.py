@@ -10,13 +10,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--ffmpeg', required=True)
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
-base = '/books/a-day-at-the-farm/0.7.0'
+base = '/books/a-day-at-the-farm/0.8.0'
 output = root / ('public' + base)
 (output / 'effects').mkdir(parents=True, exist_ok=True)
 sources = {'cow': 'cow-moo2.wav', 'calf': 'Calf.wav', 'lamb': 'Lamb.wav', 'birds': 'Birds.wav', 'sheep': 'Sheeps.mov',
-           'ducks': 'Ducks.wav', 'hen': 'Hen.wav', 'chicks': 'Chickens.wav', 'horse': 'Horse.wav', 'door': 'Door.wav'}
+           'ducks': 'Ducks.wav', 'hen': 'Hen.wav', 'chicks': 'Chickens.wav', 'horse': 'Horse.wav', 'door': 'Door.wav', 'scratching-feet': 'Scratching Feet.wav'}
 inventory = json.loads((root / 'public/books/a-day-at-the-farm/0.4.0/inventory.json').read_text())
-inventory['contentVersion'] = '0.7.0'
+inventory['contentVersion'] = '0.8.0'
 inventory['assets'] = [a for a in inventory['assets'] if '/effects/' not in a['url']]
 mapping, ledger = {}, []
 for key, name in sources.items():
