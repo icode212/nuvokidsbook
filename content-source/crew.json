@@ -1,0 +1,11 @@
+{
+  "image": "/crew/1.0.0/wonder-crew.webp",
+  "intro": { "text": "Meet Nuvo and the Wonder Crew! Nuvo loves to explore. Milo likes to look closely. Lina has wonderful ideas. Pip is a curious puppy. Mimi is a curious kitten. What will we discover together?", "audio": "/crew/1.0.0/meet-the-crew.m4a" },
+  "friends": [
+    { "id": "nuvo", "name": "Nuvo", "text": "This is Nuvo. Nuvo loves to explore. What will we discover?", "audio": "/crew/1.0.0/nuvo.m4a" },
+    { "id": "milo", "name": "Milo", "text": "This is Milo. Milo wears blue glasses and likes to look closely.", "audio": "/crew/1.0.0/milo.m4a" },
+    { "id": "lina", "name": "Lina", "text": "This is Lina. Lina has a yellow backpack and wonderful ideas.", "audio": "/crew/1.0.0/lina.m4a" },
+    { "id": "pip", "name": "Pip", "text": "This is Pip, our curious puppy with floppy ears.", "audio": "/crew/1.0.0/pip.m4a" },
+    { "id": "mimi", "name": "Mimi", "text": "This is Mimi, our curious kitten with soft grey fur.", "audio": "/crew/1.0.0/mimi.m4a" }
+  ]
+}

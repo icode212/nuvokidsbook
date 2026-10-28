@@ -1,0 +1,30 @@
+{
+  "model": "Kokoro-82M v1.0",
+  "preset": "af_heart",
+  "language": "en-us",
+  "speed": 0.82,
+  "pitchSemitones": 1,
+  "sentencePause": 0.3,
+  "codec": "AAC",
+  "container": "M4A",
+  "channels": 1,
+  "targetBitrate": 32000,
+  "text": "This is Pip, our curious puppy with floppy ears.",
+  "file": "pip.m4a",
+  "sampleRate": 24000,
+  "durationSeconds": 3.281,
+  "bytes": 16406,
+  "sha256": "6ca990316b927deaa46b225bb5ba5e3a5b9a33b0bd153442e3134ac992924761",
+  "status": "bundled",
+  "sourceCode": [
+    {
+      "path": "/Users/hendry/2026Projects/NuvoABC/scripts/generate-welcome-voice.py",
+      "sha256": "886ffdf2402a65e1515a090bed0c77bc239ad298c424133676429521b3c2612c"
+    },
+    {
+      "path": "/Users/hendry/2026Projects/NuvoABC/scripts/compact-voice-assets.py",
+      "sha256": "198f2e9e356ea2922d271723a2587d1867cb679a1dafa764609d1d755f518f8f"
+    }
+  ],
+  "modelSha256": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5"
+}

@@ -1,0 +1,30 @@
+{
+  "model": "Kokoro-82M v1.0",
+  "preset": "af_heart",
+  "language": "en-us",
+  "speed": 0.82,
+  "pitchSemitones": 1,
+  "sentencePause": 0.3,
+  "codec": "AAC",
+  "container": "M4A",
+  "channels": 1,
+  "targetBitrate": 32000,
+  "text": "This is Nuvo. Nuvo loves to explore. What will we discover?",
+  "file": "nuvo.m4a",
+  "sampleRate": 24000,
+  "durationSeconds": 4.107,
+  "bytes": 20115,
+  "sha256": "3e3a0049e2c0feb83a1abd0683d79164f4b2434eff26b0175bb43b1d568031e0",
+  "status": "bundled",
+  "sourceCode": [
+    {
+      "path": "/Users/hendry/2026Projects/NuvoABC/scripts/generate-welcome-voice.py",
+      "sha256": "886ffdf2402a65e1515a090bed0c77bc239ad298c424133676429521b3c2612c"
+    },
+    {
+      "path": "/Users/hendry/2026Projects/NuvoABC/scripts/compact-voice-assets.py",
+      "sha256": "198f2e9e356ea2922d271723a2587d1867cb679a1dafa764609d1d755f518f8f"
+    }
+  ],
+  "modelSha256": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5"
+}

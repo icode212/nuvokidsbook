@@ -20,11 +20,13 @@ for name in ['model', 'voices', 'ffmpeg']:
     parser.add_argument('--' + name, required=True)
 parser.add_argument('--text', default='The farm is waking up. What can we hear?')
 parser.add_argument('--name', default='farm-welcome')
+parser.add_argument('--output-dir', default='output/voice-review/kokoro-af-heart')
+parser.add_argument('--status', default='awaiting-user-listening-review')
 args = parser.parse_args()
 if not args.name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in args.name):
     parser.error('--name must use lowercase letters, numbers, and hyphens')
 root = Path(__file__).resolve().parents[1]
-output = root / 'output/voice-review/kokoro-af-heart'
+output = root / args.output_dir
 output.mkdir(parents=True, exist_ok=True)
 target = output / (args.name + '.m4a')
 text = args.text
@@ -55,7 +57,7 @@ for name in ['generate-welcome-voice.py', 'compact-voice-assets.py']:
     provenance.append({'path': str(source), 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()})
 manifest = {**settings, 'text': text, 'file': target.name, 'sampleRate': rate,
             'durationSeconds': round(len(samples) / rate, 3), 'bytes': len(data),
-            'sha256': hashlib.sha256(data).hexdigest(), 'status': 'awaiting-user-listening-review',
+            'sha256': hashlib.sha256(data).hexdigest(), 'status': args.status,
             'sourceCode': provenance, 'modelSha256': hashlib.sha256(Path(args.model).read_bytes()).hexdigest()}
 (output / (args.name + '.manifest.json')).write_text(json.dumps(manifest, indent=2) + '\n')
 print(json.dumps({'file': str(target), 'durationSeconds': manifest['durationSeconds'],

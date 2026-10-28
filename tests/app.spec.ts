@@ -8,6 +8,8 @@ async function parents(page: import('@playwright/test').Page) {
 test('anonymous story, all pages, explore, find it and small-screen geometry', async ({ page }) => {
   await page.setViewportSize({width:390,height:844}); await page.goto('/');
   await expect(page.getByRole('heading',{name:'Your little bookshelf'})).toBeVisible();
+  await expect(page.getByRole('img',{name:/The Wonder Crew: Milo/})).toBeVisible();
+  await page.screenshot({path:'output/crew-mobile-preview.png',fullPage:true});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole('button',{name:'Let’s explore',exact:true}).click();
   await page.getByRole('button',{name:'Open the book',exact:true}).click();
@@ -57,6 +59,7 @@ test('parent gate, persistent settings, book download and offline reopen', async
     speechSynthesis.speak = utterance => { qa.browserVoiceStarts!++; speak(utterance); };
   });
   await page.goto('/'); await page.evaluate(async()=>{await navigator.serviceWorker.ready;}); await page.reload();
+  expect(await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts)).toBe(0);
   await parents(page); await page.getByLabel('Word labels',{exact:false}).uncheck();
   await page.getByRole('slider',{name:'Voice volume'}).fill('35');
   await page.getByRole('button',{name:'Save book offline',exact:true}).click();
@@ -64,10 +67,24 @@ test('parent gate, persistent settings, book download and offline reopen', async
   await page.getByRole('button',{name:'Close',exact:true}).click();
   await context.setOffline(true); await page.reload();
   await expect(page.getByText('You’re offline. Saved stories are still here.')).toBeVisible();
+  await expect(page.getByRole('img',{name:/The Wonder Crew: Milo/})).toBeVisible();
+  for (const name of ['Nuvo','Milo','Lina','Pip','Mimi']) {
+    const count = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0);
+    await page.getByRole('button',{name:`Meet ${name}`,exact:true}).click();
+    await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0)).toBeGreaterThan(count);
+  }
+  await page.getByRole('button',{name:'Mute introductions',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Meet Nuvo',exact:true})).toBeDisabled();
+  await page.getByRole('button',{name:'Unmute introductions',exact:true}).click();
+  const beforeCrew = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0);
+  await page.getByRole('button',{name:'Meet the crew',exact:true}).click();
+  await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0)).toBeGreaterThan(beforeCrew);
+  await page.getByRole('button',{name:'Stop introduction',exact:true}).click();
   await page.getByRole('button',{name:'Let’s explore',exact:true}).click(); await page.getByRole('button',{name:'Open the book',exact:true}).click();
   await expect(page.getByRole('button',{name:'Birds',exact:true})).toBeVisible();
+  const beforeStory = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0);
   await page.getByRole('button',{name:'Read the story',exact:true}).click();
-  await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts)).toBeGreaterThan(0);
+  await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0)).toBeGreaterThan(beforeStory);
   expect(await page.evaluate(() => (window as Window & {voiceGains?:number[]}).voiceGains?.[0])).toBeCloseTo(.35);
   expect(await page.evaluate(() => (window as Window & {browserVoiceStarts?:number}).browserVoiceStarts)).toBe(0);
   await page.getByRole('button',{name:'Mute',exact:true}).click();
