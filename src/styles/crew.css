@@ -10,6 +10,9 @@
 .crew-controls .icon-button{width:40px;height:40px}
 .crew-controls>span{font-size:11px;color:var(--muted)}
 .crew-transcript{font-size:12px;line-height:1.6;color:#657667;margin:10px 0 0;min-height:3.2em}
-.book-cover .book-card-sticker{z-index:2;top:12px;right:12px;width:90px;height:90px;font-size:10px;pointer-events:none}
-@media(max-width:650px){.book-cover .book-card-sticker{top:10px;right:10px;width:72px;height:72px;font-size:8px}}
+.bookshelf-section>.section-heading{flex-wrap:wrap;gap:12px}
+.shelf-title-row{display:flex;align-items:center;gap:18px;margin-top:10px}
+.section-heading .shelf-title-row h2{margin:0}
+.shelf-title-row .shelf-sticker{position:static;flex-shrink:0;width:76px;height:76px;font-size:9px;pointer-events:none}
+@media(max-width:650px){.shelf-title-row{gap:10px}.shelf-title-row .shelf-sticker{width:60px;height:60px;font-size:7px}}
 @media(max-width:650px){.crew-introduction .crew-art{border-radius:18px}.crew-controls{gap:8px}.crew-controls>span{flex-basis:100%;font-size:10px}.crew-transcript{font-size:11px}.crew-controls>.button{font-size:12px}}
