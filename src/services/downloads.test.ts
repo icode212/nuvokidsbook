@@ -14,9 +14,9 @@ it('commits a verified complete pack and rejects corrupted replacement bytes', a
   await downloadBook(book,new AbortController().signal,()=>{});
   expect((await downloadRecord(book.id))?.bytes).toBe(bytes.length);
   expect(await (await savedMedia(book.id,'/test.webp'))!.text()).toBe('image bytes');
-  manifest.contentVersion = '0.6.0';
+  manifest.contentVersion = '0.7.0';
   vi.stubGlobal('fetch',vi.fn(async(url:string)=>url === book.inventory ? new Response(JSON.stringify(manifest)) : new Response('corrupted')));
-  await expect(downloadBook({...book,contentVersion:'0.6.0'},new AbortController().signal,()=>{})).rejects.toThrow('integrity');
+  await expect(downloadBook({...book,contentVersion:'0.7.0'},new AbortController().signal,()=>{})).rejects.toThrow('integrity');
   expect((await downloadRecord(book.id))?.version).toBe(book.contentVersion);
   await removeDownload(book.id);
 });

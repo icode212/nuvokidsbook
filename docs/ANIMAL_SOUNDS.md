@@ -1,4 +1,6 @@
-# Supplied farm recordings — version 0.5.0
+# Supplied farm recordings — version 0.6.0
+
+Version 0.6.0 adds the separate `Hen.wav` for hen taps. Chick taps keep `Chickens.wav`; dedicated chick, calf and lamb calls are not yet supplied. The 0.6.0 inventory contains eight supplied effects and unchanged Kokoro narration.
 
 Current effects come from `docs/animals-sound/`: `cow-moo.wav`, `Birds.wav`, `Ducks.wav`, `Chickens.wav`, `Horse.wav`, `Sheeps.mov` (audio extracted), and `Door.wav`. Hen and chick taps share the supplied chicken recording; calves and lambs share cow/sheep calls. Barn and shelter doors now use the supplied door recording. No narrator impersonations are included. Kokoro narration remains unchanged at version 0.4.0.
 

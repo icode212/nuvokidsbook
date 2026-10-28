@@ -11,13 +11,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--ffmpeg', required=True)
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
-base = '/books/a-day-at-the-farm/0.5.0'
+base = '/books/a-day-at-the-farm/0.6.0'
 output = root / ('public' + base)
 (output / 'effects').mkdir(parents=True, exist_ok=True)
 sources = {'cow': 'cow-moo.wav', 'birds': 'Birds.wav', 'sheep': 'Sheeps.mov',
-           'ducks': 'Ducks.wav', 'hen': 'Chickens.wav', 'horse': 'Horse.wav', 'door': 'Door.wav'}
+           'ducks': 'Ducks.wav', 'hen': 'Hen.wav', 'chicks': 'Chickens.wav', 'horse': 'Horse.wav', 'door': 'Door.wav'}
 inventory = json.loads((root / 'public/books/a-day-at-the-farm/0.4.0/inventory.json').read_text())
-inventory['contentVersion'] = '0.5.0'
+inventory['contentVersion'] = '0.6.0'
 inventory['assets'] = [a for a in inventory['assets'] if '/effects/' not in a['url']]
 mapping, ledger = {}, []
 for key, name in sources.items():
@@ -44,8 +44,7 @@ for key, name in sources.items():
         provenance='User supplied; external source and license not specified',
         changes='Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades',
         durationSeconds=round(len(samples)/24000, 3)))
-# No separate chick recording was supplied: use the supplied chicken recording for both.
-mapping['chicks'] = mapping['hen']
+# Chicks use Chickens.wav until a dedicated chick-peep recording is provided.
 (root / 'content-source/a-day-at-the-farm/effects.json').write_text(json.dumps(mapping, indent=2)+'\n')
 (root / 'content-source/a-day-at-the-farm/effect-rights.json').write_text(json.dumps(ledger, indent=2)+'\n')
 (output / 'inventory.json').write_text(json.dumps(inventory, indent=2)+'\n')

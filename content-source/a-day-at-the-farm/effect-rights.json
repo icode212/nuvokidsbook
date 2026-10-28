@@ -1,6 +1,6 @@
 [
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/cow.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/cow.wav",
     "bytes": 316106,
     "sha256": "e4c2159f4a70b7eaea96d7c1fd93e18771c833b5ccc823023c47e55d8479a0e7",
     "source": "docs/animals-sound/cow-moo.wav",
@@ -10,7 +10,7 @@
     "durationSeconds": 6.585
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/birds.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/birds.wav",
     "bytes": 728754,
     "sha256": "1f83f7f42c12d839fdc27b4110ab4539b911936b7a923b7d86794f1631c23c9d",
     "source": "docs/animals-sound/Birds.wav",
@@ -20,7 +20,7 @@
     "durationSeconds": 15.181
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/sheep.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/sheep.wav",
     "bytes": 507948,
     "sha256": "2f1caa8b0d9050a41803e278f5c1dbc1403be09c2c3880a9be8a15f21082deff",
     "source": "docs/animals-sound/Sheeps.mov",
@@ -30,7 +30,7 @@
     "durationSeconds": 10.581
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/ducks.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/ducks.wav",
     "bytes": 57776,
     "sha256": "d7774342b51e764d48522026cd419973dc58cb1c57e3bd68ad0851ef4a2b610a",
     "source": "docs/animals-sound/Ducks.wav",
@@ -40,7 +40,17 @@
     "durationSeconds": 1.203
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/hen.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/hen.wav",
+    "bytes": 156890,
+    "sha256": "4a67ae340bee18bbf7a6e38ac2d8cbcfb6765c5f6609f5e39c86c873363de9ca",
+    "source": "docs/animals-sound/Hen.wav",
+    "sourceSha256": "e64367a043040a1f3f192027e85b427556c8579da9c5fceee7d55b9a0600def3",
+    "provenance": "User supplied; external source and license not specified",
+    "changes": "Full audio, mono 24 kHz PCM16, peak reduction only, 20 ms edge fades",
+    "durationSeconds": 3.268
+  },
+  {
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/chicks.wav",
     "bytes": 230514,
     "sha256": "89d4bb6ed0cd5e8fd3125745e160f6bed41f82c41fbf3040c0be3498ef565eb2",
     "source": "docs/animals-sound/Chickens.wav",
@@ -50,7 +60,7 @@
     "durationSeconds": 4.801
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/horse.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/horse.wav",
     "bytes": 129484,
     "sha256": "0a8516cb8b02444d041644ba87a62b0978f2a97aa35c479019683a89d8b8ebd3",
     "source": "docs/animals-sound/Horse.wav",
@@ -60,7 +70,7 @@
     "durationSeconds": 2.697
   },
   {
-    "url": "/books/a-day-at-the-farm/0.5.0/effects/door.wav",
+    "url": "/books/a-day-at-the-farm/0.6.0/effects/door.wav",
     "bytes": 288032,
     "sha256": "4565cd1a6ac7c19090382ef08d53d65cfa9ab7e36118296da9f910b10d9b0fe6",
     "source": "docs/animals-sound/Door.wav",
