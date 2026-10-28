@@ -1,8 +1,9 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 const bundles = (await readdir('dist/assets')).map(p => '/assets/' + p);
-const files = ['/', '/index.html', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', ...bundles];
+const files = ['/', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png', ...bundles];
 const hash = createHash('sha256');
+hash.update(await readFile('dist/index.html'));
 for (const file of files.filter(f => f !== '/')) hash.update(await readFile('dist' + file));
 const template = await readFile('src/services/sw-template.js', 'utf8');
 hash.update(template);

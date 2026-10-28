@@ -15,4 +15,5 @@ it('matches immutable shell assets despite Vary: Origin on module requests', asy
   expect(offlineFetch).not.toHaveBeenCalled();
   handlers.get('fetch')!({request:{url:'https://books.example/',method:'GET',mode:'navigate'},respondWith:(r:Promise<Response>)=>{response=r;}});
   expect(await (await response)!.text()).toBe('offline javascript');
+  expect(match).toHaveBeenLastCalledWith('/', {ignoreVary:true});
 });
