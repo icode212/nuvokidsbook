@@ -1,4 +1,5 @@
 import { savedMedia } from './downloads';
+import { mediaURL } from './platform';
 /** One foreground channel. Farm narration uses bundled Kokoro recordings. */
 export interface AudioDriver { speak(text: string, signal: AbortSignal): Promise<void>; effect?(path: string, signal: AbortSignal): Promise<void>; tone(signal: AbortSignal): Promise<void>; stop(): void; unlock(): void }
 export class AudioController {
@@ -26,7 +27,7 @@ export function createBrowserDriver(bookId?: string, narrationAssets?: Record<st
     signal.throwIfAborted();
     let bytes: ArrayBuffer;
     if (blob) bytes = await blob.arrayBuffer();
-    else { const response = await fetch(path, { signal }); if (!response.ok) throw new Error('Audio could not be loaded.'); bytes = await response.arrayBuffer(); }
+    else { const response = await fetch(mediaURL(path), { signal }); if (!response.ok) throw new Error('Audio could not be loaded.'); bytes = await response.arrayBuffer(); }
     signal.throwIfAborted();
     const buffer = await context.decodeAudioData(bytes);
     signal.throwIfAborted(); await context.resume(); signal.throwIfAborted();

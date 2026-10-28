@@ -36,8 +36,8 @@ export const bookSchema = z.object({
 export type Book = z.infer<typeof bookSchema>;
 export type Scene = z.infer<typeof sceneSchema>;
 export type Target = z.infer<typeof objectSchema>;
-export type BookSummary = Omit<Book, 'scenes'> & { sceneCount: number };
+export type BookSummary = Omit<Book, 'scenes'> & { sceneCount: number; owned?: boolean };
 export const summarize = ({ scenes, ...book }: Book): BookSummary => ({ ...book, sceneCount: scenes.length });
-export function visibleBooks(books: BookSummary[]) {
-  return books.filter(b => b.status === 'published' && b.access === 'free').sort((a, b) => a.sortOrder - b.sortOrder || a.title.localeCompare(b.title));
+export function visibleBooks(books: BookSummary[], hideUnowned = true) {
+  return books.filter(b => b.status === 'published' && (b.access === 'free' || b.owned || !hideUnowned)).sort((a, b) => a.sortOrder - b.sortOrder || a.title.localeCompare(b.title));
 }

@@ -1,7 +1,7 @@
 {
   "name": "nuvokids-books", "private": true, "version": "0.1.0", "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1", "build": "tsc -b && vite build && node scripts/build-sw.mjs",
+    "dev": "vite --host 127.0.0.1", "build": "tsc -b && tsc -p tsconfig.server.json && vite build && node scripts/build-sw.mjs",
     "preview": "vite preview --host 127.0.0.1", "assets": "python3 scripts/prepare-assets.py",
     "test": "vitest run", "test:e2e": "playwright test"
   },

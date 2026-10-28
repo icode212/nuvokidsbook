@@ -3,7 +3,29 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { farmBook } from '../../content-source/a-day-at-the-farm/book';
 import { database } from './storage';
 import { downloadBook, downloadRecord, removeDownload, savedMedia, type DownloadRecord } from './downloads';
-afterEach(() => vi.unstubAllGlobals());
+import { setSessionOwner } from './session';
+afterEach(() => {setSessionOwner(null);vi.unstubAllGlobals();});
+it('keeps paid downloads isolated by account and rejects unverified downloads',async()=>{
+  const paid={...structuredClone(farmBook),id:'paid-isolation',access:'paid' as const};
+  await expect(downloadBook(paid,new AbortController().signal,()=>{})).rejects.toThrow('ownership');
+  const db=await database(), key='owner:parent-a:paid-isolation';
+  await db.put('downloads',{key,ownerId:'parent-a',version:paid.contentVersion,bytes:5,urls:['/private/test.m4a'],book:paid,completedAt:new Date().toISOString()});
+  await db.put('media',new Blob(['owned']),`${key}@${paid.contentVersion}:/private/test.m4a`);
+  setSessionOwner('parent-a');expect(await (await savedMedia(paid.id,'/private/test.m4a'))!.text()).toBe('owned');
+  setSessionOwner('parent-b');expect(await downloadRecord(paid.id)).toBeUndefined();expect(await savedMedia(paid.id,'/private/test.m4a')).toBeUndefined();
+  setSessionOwner(null);expect(await downloadRecord(paid.id)).toBeUndefined();
+  setSessionOwner('parent-a');expect(await (await savedMedia(paid.id,'/private/test.m4a'))!.text()).toBe('owned');await removeDownload(paid.id);
+});
+it('aborts a paid download when the account changes during a response',async()=>{
+  const bytes=new TextEncoder().encode('image bytes'); const sha256=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+  const paid={...structuredClone(farmBook),id:'paid-race',access:'paid' as const,narrationAssets:undefined,cover:'/private/image.webp',scenes:[{...farmBook.scenes[0],image:'/private/image.webp',objects:farmBook.scenes[0].objects.map(o=>({...o,soundFile:undefined}))}]};
+  vi.stubGlobal('navigator',{serviceWorker:{getRegistration:async()=>({active:{}})}});
+  let finish!:()=>void;const fetched=new Promise<void>(resolve=>{finish=resolve;});
+  vi.stubGlobal('fetch',vi.fn(async()=>{await fetched;return new Response(bytes);}));
+  setSessionOwner('parent-a');const transfer=downloadBook(paid,new AbortController().signal,()=>{},{owner:'parent-a',grant:'test',inventory:{bookId:paid.id,contentVersion:paid.contentVersion,assets:[{url:'/private/image.webp',bytes:bytes.length,sha256}]}});
+  await new Promise(resolve=>setTimeout(resolve,10));setSessionOwner('parent-b');finish();
+  await expect(transfer).rejects.toThrow();setSessionOwner('parent-a');expect(await downloadRecord(paid.id)).toBeUndefined();
+});
 it('commits a verified complete pack and rejects corrupted replacement bytes', async () => {
   const bytes = new TextEncoder().encode('image bytes');
   const sha256 = [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');

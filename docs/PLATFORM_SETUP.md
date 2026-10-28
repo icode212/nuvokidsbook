@@ -1,5 +1,7 @@
 # Platform administration and deployment
 
+> Superseded deployment instructions: see [Books cloud and offline delivery](BOOKS_CLOUD_SETUP.md) for the R2, parent accounts, one-time ownership and disabled-payments architecture. The original free-only setup below is retained as historical context.
+
 ## Local authoring vs shared platform
 
 With no Supabase variables, Book Studio is a local authoring tool, behind the parent reading gate. It has no security claim: a person controlling their browser can edit local data. Do not use local mode as a shared admin backend.

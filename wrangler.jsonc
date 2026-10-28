@@ -1,0 +1,13 @@
+{
+  "name": "nuvokidsbook",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2026-10-28",
+  "vars": {
+    "SUPABASE_URL": "https://hcaaiacydexnhgbkfegd.supabase.co",
+    "SUPABASE_PUBLIC_KEY": "sb_publishable_YzXzntIEsKjgicfpo1Goyw_MmpSTqkG"
+  },
+  "r2_buckets": [
+    { "binding": "PUBLIC_BOOKS", "bucket_name": "nuvokids-books-public" },
+    { "binding": "PRIVATE_BOOKS", "bucket_name": "nuvokids-books-private" }
+  ]
+}
