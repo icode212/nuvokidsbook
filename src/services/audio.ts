@@ -1,5 +1,5 @@
 import { savedMedia } from './downloads';
-/** One foreground channel. Farm narration uses prepared Samantha files. */
+/** One foreground channel. Farm narration uses bundled Kokoro recordings. */
 export interface AudioDriver { speak(text: string, signal: AbortSignal): Promise<void>; effect?(path: string, signal: AbortSignal): Promise<void>; tone(signal: AbortSignal): Promise<void>; stop(): void; unlock(): void }
 export class AudioController {
   private request?: AbortController;
@@ -16,10 +16,11 @@ export class AudioController {
     } catch { /* Cancellation and unavailable browser voices are nonfatal. */ }
   }
 }
-export function createBrowserDriver(bookId?: string, narrationAssets?: Record<string, string>): AudioDriver {
+export function createBrowserDriver(bookId?: string, narrationAssets?: Record<string, string>, voiceVolume: () => number = () => .85): AudioDriver {
   let context: AudioContext | undefined;
   const nodes = new Set<OscillatorNode | AudioBufferSourceNode>();
-  async function playFile(path: string, signal: AbortSignal) {
+  async function playFile(path: string, signal: AbortSignal, volume = .85) {
+    if (volume <= 0) return;
     if (!context || signal.aborted) return;
     const blob = bookId ? await savedMedia(bookId, path) : undefined;
     signal.throwIfAborted();
@@ -30,7 +31,7 @@ export function createBrowserDriver(bookId?: string, narrationAssets?: Record<st
     const buffer = await context.decodeAudioData(bytes);
     signal.throwIfAborted(); await context.resume(); signal.throwIfAborted();
     const source = context.createBufferSource(), gain = context.createGain();
-    source.buffer = buffer; gain.gain.value = .85; source.connect(gain); gain.connect(context.destination);
+    source.buffer = buffer; gain.gain.value = volume; source.connect(gain); gain.connect(context.destination);
     await new Promise<void>(resolve => {
       const abort = () => { try { source.stop(); } catch { /* already stopped */ } };
       source.onended = () => { nodes.delete(source); source.disconnect(); gain.disconnect(); signal.removeEventListener('abort', abort); resolve(); };
@@ -42,15 +43,17 @@ export function createBrowserDriver(bookId?: string, narrationAssets?: Record<st
     unlock() { try { context ??= new AudioContext(); void context.resume().catch(() => {}); } catch { /* unsupported */ } },
     stop() { window.speechSynthesis?.cancel(); for (const node of nodes) { try { node.stop(); } catch { /* already stopped */ } } nodes.clear(); },
     async speak(text, signal) {
+      const volume = Math.max(0, Math.min(1, voiceVolume()));
+      if (!volume) return;
       const recorded = narrationAssets?.[text];
       if (recorded) {
-        return playFile(recorded, signal);
+        return playFile(recorded, signal, volume);
       }
       // A prepared book never silently switches back to the disliked browser voice.
       if (narrationAssets && Object.keys(narrationAssets).length) return;
       return new Promise(resolve => {
         if (signal.aborted || !window.speechSynthesis) return resolve();
-        const speech = new SpeechSynthesisUtterance(text); speech.lang = 'en-CA'; speech.rate = .85; speech.pitch = 1.05; speech.volume = .8;
+        const speech = new SpeechSynthesisUtterance(text); speech.lang = 'en-CA'; speech.rate = .85; speech.pitch = 1.05; speech.volume = volume;
         const voices = window.speechSynthesis.getVoices();
         speech.voice = voices.find(v => v.lang === 'en-CA' && v.localService) ?? voices.find(v => v.lang.startsWith('en') && v.localService) ?? null;
         let timer: ReturnType<typeof setTimeout>;

@@ -1,4 +1,14 @@
-# Samantha narration update
+# Kokoro narration update — version 0.4.0
+
+The current farm book uses 74 bundled Kokoro recordings for twelve story pages, spoken object descriptions, Find it prompts and shared feedback. Animal taps retain the real animal recordings; the experimental spoken cow imitation is excluded.
+
+Approved pipeline, adapted from NuvoABC's `generate-welcome-voice.py` and `compact-voice-assets.py`: Kokoro-82M v1.0, `af_heart`, `en-us`, speed `0.82`, sentence pause `0.3`, +1 semitone pitch resampling, peak cap 0.88 / maximum gain 2, 60 ms leading / 120 ms trailing silence. Delivery is mono 24 kHz AAC M4A targeting 32 kbps (short clip average bitrates vary).
+
+Generate with `scripts/prepare-kokoro-narration.py --model PATH --voices PATH --ffmpeg PATH` and Python `kokoro-onnx==0.6.1`. This supersedes the legacy Samantha generation command below. The versioned `voice-manifest.json` records settings, model hash, transcripts, durations and output hashes. The offline inventory includes images, narration and animal calls with size/SHA-256 checks.
+
+Voice volume is saved in Grown-ups settings and controls spoken playback independently of animal calls. Reader mute stops all audio. Volume changes stop current playback; subsequent narration uses the new level. Use **Grown-ups → Save update** online to update an older offline book. Interrupted updates preserve the existing complete download. Playback needs no speech service.
+
+## Historical Samantha update (superseded)
 
 The farm book now uses the same **Samantha** voice and **145 words/minute** rate as NewNuvoKids’s prepared prompts. Browser-default speech is no longer used for this book. No other app files were modified.
 

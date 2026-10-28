@@ -34,7 +34,14 @@ test('anonymous story, all pages, explore, find it and small-screen geometry', a
 });
 test('parent gate, persistent settings, book download and offline reopen', async ({ page, context }) => {
   await page.addInitScript(() => {
-    const qa = window as Window & { recordedVoiceStarts?: number; browserVoiceStarts?: number };
+    const qa = window as Window & { recordedVoiceStarts?: number; browserVoiceStarts?: number; voiceGains?: number[] };
+    qa.voiceGains = [];
+    const createGain = AudioContext.prototype.createGain;
+    AudioContext.prototype.createGain = function() {
+      const gain = createGain.call(this); const connect = gain.connect.bind(gain);
+      gain.connect = ((...args: Parameters<typeof connect>) => { qa.voiceGains!.push(gain.gain.value); return connect(...args); }) as typeof gain.connect;
+      return gain;
+    };
     qa.recordedVoiceStarts = 0; qa.browserVoiceStarts = 0;
     const create = AudioContext.prototype.createBufferSource;
     AudioContext.prototype.createBufferSource = function() {
@@ -46,6 +53,7 @@ test('parent gate, persistent settings, book download and offline reopen', async
   });
   await page.goto('/'); await page.evaluate(async()=>{await navigator.serviceWorker.ready;}); await page.reload();
   await parents(page); await page.getByLabel('Word labels',{exact:false}).uncheck();
+  await page.getByRole('slider',{name:'Voice volume'}).fill('35');
   await page.getByRole('button',{name:'Save book offline',exact:true}).click();
   await expect(page.getByText(/Saved ·/)).toBeVisible({timeout:30000});
   await page.getByRole('button',{name:'Close',exact:true}).click();
@@ -55,7 +63,15 @@ test('parent gate, persistent settings, book download and offline reopen', async
   await expect(page.getByRole('button',{name:'Birds',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'Read the story',exact:true}).click();
   await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => (window as Window & {voiceGains?:number[]}).voiceGains?.[0])).toBeCloseTo(.35);
   expect(await page.evaluate(() => (window as Window & {browserVoiceStarts?:number}).browserVoiceStarts)).toBe(0);
+  await page.getByRole('button',{name:'Mute',exact:true}).click();
+  const beforeMuted = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts);
+  await expect(page.getByRole('button',{name:'Read the story',exact:true})).toBeDisabled();
+  await page.getByRole('button',{name:'Birds',exact:true}).click();
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts)).toBe(beforeMuted);
+  await page.getByRole('button',{name:'Unmute',exact:true}).click();
   const beforeCall = await page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0);
   await page.getByRole('button',{name:'Birds',exact:true}).click();
   await expect.poll(() => page.evaluate(() => (window as Window & {recordedVoiceStarts?:number}).recordedVoiceStarts ?? 0)).toBeGreaterThan(beforeCall);

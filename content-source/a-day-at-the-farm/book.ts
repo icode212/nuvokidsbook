@@ -19,10 +19,10 @@ const page = (pageNumber: number, id: string, title: string, storyText: string, 
   })),
 });
 export const farmBook = bookSchema.parse({
-  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.3.0', title: 'A Day at the Farm',
+  schemaVersion: 1, id: 'a-day-at-the-farm', contentVersion: '0.4.0', title: 'A Day at the Farm',
   series: 'Nuvo & the Wonder Crew', creator: 'NuvoKids', summary: 'A little moo, a little peep, and a big discovery. Join the crew to find out what makes a happy farm.',
   locale: 'en-CA', ageRange: '2–5', kind: 'story', access: 'free', status: 'published', sortOrder: 0,
-  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.3.0/inventory.json', assetStatus: 'development', narrationAssets,
+  cover: '/books/a-day-at-the-farm/0.1.0/cover.webp', inventory: '/books/a-day-at-the-farm/0.4.0/inventory.json', assetStatus: 'development', narrationAssets,
   scenes: [
     page(1, '01-welcome', 'Welcome to the Farm', 'The farm is waking up. What can we hear?', [
       ['birds', 'Birds', .015,.30,.105,.10,'Chirping birds','Wing lift','Where are the birds?','These are birds.'],

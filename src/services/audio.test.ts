@@ -1,5 +1,12 @@
 import { expect, it, vi } from 'vitest';
-import { AudioController, type AudioDriver } from './audio';
+import { AudioController, createBrowserDriver, type AudioDriver } from './audio';
+it('does not load or speak recorded narration when voice volume is zero', async () => {
+  const fetchSpy = vi.spyOn(globalThis, 'fetch');
+  try {
+    await createBrowserDriver('farm', { story: '/story.m4a' }, () => 0).speak('story', new AbortController().signal);
+    expect(fetchSpy).not.toHaveBeenCalled();
+  } finally { fetchSpy.mockRestore(); }
+});
 it('uses the animal file instead of speech or a preview tone', async () => {
   const driver: AudioDriver = { unlock:vi.fn(),stop:vi.fn(),speak:vi.fn(async()=>{}),tone:vi.fn(async()=>{}),effect:vi.fn(async()=>{}) };
   await new AudioController(driver).play(null,'/effects/cow.wav');

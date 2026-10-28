@@ -7,7 +7,7 @@ describe('content contract', () => {
   it('has prepared voice files for every farm line and shared response', () => {
     const texts = farmBook.scenes.flatMap(s => [s.storyText, ...s.objects.flatMap(o => [o.transcript, ...(o.findPrompt ? [o.findPrompt] : [])])]);
     texts.push('You found it!', 'There it is!', 'Let’s look again.');
-    expect(texts.every(text => farmBook.narrationAssets?.[text]?.endsWith('.wav'))).toBe(true);
+    expect(texts.every(text => farmBook.narrationAssets?.[text]?.startsWith('/books/a-day-at-the-farm/0.4.0/audio/') && farmBook.narrationAssets[text].endsWith('.m4a'))).toBe(true);
   });
   it('includes all 12 approved farm pages, with 3 explicit targets on each', () => {
     expect(bookSchema.safeParse(farmBook).success).toBe(true);

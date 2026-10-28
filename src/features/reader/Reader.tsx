@@ -15,7 +15,8 @@ export default function Reader({ book, settings, onBack, paused = false }: { boo
   const [requested, setRequested] = useState<Target>(); const [active, setActive] = useState('');
   const [feedback, setFeedback] = useState(''); const [label, setLabel] = useState(''); const [pagesOpen, setPagesOpen] = useState(false);
   const [muted, setMuted] = useState(false); const [loaded, setLoaded] = useState(false);
-  const audio = useRef<AudioController | null>(null); audio.current ??= new AudioController(createBrowserDriver(book.id, book.narrationAssets));
+  const voiceVolume = useRef(settings.voiceVolume); voiceVolume.current = settings.voiceVolume;
+  const audio = useRef<AudioController | null>(null); audio.current ??= new AudioController(createBrowserDriver(book.id, book.narrationAssets, () => voiceVolume.current));
   const activeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const promptTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const scene = page > 0 ? book.scenes[page - 1] : undefined;
@@ -27,7 +28,7 @@ export default function Reader({ book, settings, onBack, paused = false }: { boo
     document.addEventListener('visibilitychange', visibility); window.addEventListener('pagehide', stop);
     return () => { stop(); document.removeEventListener('visibilitychange', visibility); window.removeEventListener('pagehide', stop); };
   }, []);
-  useEffect(() => { audio.current?.stop(); }, [muted, settings.narration, settings.sounds]);
+  useEffect(() => { audio.current?.stop(); }, [muted, settings.narration, settings.sounds, settings.voiceVolume]);
   useEffect(() => { if (paused) { audio.current?.stop(); clearTimeout(activeTimer.current); clearTimeout(promptTimer.current); setActive(''); } }, [paused]);
   function navigate(next: number) {
     audio.current?.stop(); clearTimeout(activeTimer.current); clearTimeout(promptTimer.current);

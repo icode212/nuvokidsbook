@@ -1,0 +1,476 @@
+{
+  "bookId": "a-day-at-the-farm",
+  "contentVersion": "0.4.0",
+  "assets": [
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-01.webp",
+      "bytes": 372798,
+      "sha256": "859654921fe5bde64ee23cc17fadf24660e41ea6b356496f72ca6bfda31302b1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-02.webp",
+      "bytes": 388526,
+      "sha256": "11c9d262fcb25307f534d60f61d9c3554d7b4d100f44840ec30e4bea831b6afd"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-03.webp",
+      "bytes": 390220,
+      "sha256": "9fdf78418ba18926cd8492eba3f564b38de4a1afc012f84a15b0ecd284cacaee"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-04.webp",
+      "bytes": 390486,
+      "sha256": "99860eb918fa1754655829404e13cd321681d9e2eb9e4b7fea1fb8c0f2faf2c9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-05.webp",
+      "bytes": 377146,
+      "sha256": "3c7f9fdaa32caf164e785e58a2d3e242cec78d84752d1f7bfcaad1d43ede2f9e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-06.webp",
+      "bytes": 403044,
+      "sha256": "c1fc67e6e185d181883e8136f6a65862792b7207bf84be55747dce5725299130"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-07.webp",
+      "bytes": 414656,
+      "sha256": "5077a656de916df01675bc3ac0c7b94681d32ba3e43643b69f4fdcf8e74b12cb"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-08.webp",
+      "bytes": 442022,
+      "sha256": "3098509fab0aaf351738c8b461c5da1e22bb8c16a2157939d6951ad16a4c9847"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-09.webp",
+      "bytes": 468114,
+      "sha256": "8305d4f33502254b6d6b0bdd3d9e10bae927dffb67a3cbe9fd7bee3c4a5cf7d9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-10.webp",
+      "bytes": 463900,
+      "sha256": "5d2a295a3819a2991e93d583e9704f976c1b782a8b906128b1b0c8788bf56be1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-11.webp",
+      "bytes": 346742,
+      "sha256": "fcb5f718ffabfd92b5b77850756014cf031a8e5875ec22d54616c0cf8419e8cf"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/page-12.webp",
+      "bytes": 451508,
+      "sha256": "148ec88ea94c390c57ebf0254ff1a1c370478ce3afef4c6ce5c71d3fbdc05497"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.1.0/cover.webp",
+      "bytes": 173402,
+      "sha256": "0832ba8f106a07af7fd9ab33ff70e324496d356f6d3283ae8786ca55039213d3"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/cow.wav",
+      "bytes": 115756,
+      "sha256": "ebd16fdd29f537c6aa31c523988ff5c05503306fef2fea45065b3154b14fd970"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/birds.wav",
+      "bytes": 83172,
+      "sha256": "167f4d468d562188e2c1da4fe8e8f11fbbb0663af0d6f9af4c741d2b5a4884fd"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/sheep.wav",
+      "bytes": 48554,
+      "sha256": "c5fdf0c40f7b940986b0fc73daecd51af48910a4611e98d88388cec5f93ca4cb"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/ducks.wav",
+      "bytes": 141164,
+      "sha256": "978bd7d8d59885fe1eaad90e1946429d08c20ee732b847b88052e621e7be6fa2"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/hen.wav",
+      "bytes": 141164,
+      "sha256": "7f76a96a99e0e616b8a15db14a320e9f1b11a9db85bef1441398ae32d21c97b4"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/chicks.wav",
+      "bytes": 119114,
+      "sha256": "961ee7f7668fc633531d2b8bfa9011b88f5e07a39a04cf82496eb6bb2d59c61e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.3.0/effects/horse.wav",
+      "bytes": 176444,
+      "sha256": "f673d51a2bdead579dd770b4a49c2c7e598740af479ae7773bc9f52279eca58a"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-01-story.m4a",
+      "bytes": 14074,
+      "sha256": "f77b3843170fe3045803edb620224e51fe68407dd5f346602b71962f5232ea84"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/01-welcome-birds-name.m4a",
+      "bytes": 8372,
+      "sha256": "b6ca68f3cae0c58ba883996b0d18dfa794501d9c61199d73670429ad3d013091"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/01-welcome-find-birds.m4a",
+      "bytes": 7485,
+      "sha256": "3e3cd6e2bc1139e862d6284d6cf800d8ce4f51fc067a0109f5269a274d76c01e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-cow-name.m4a",
+      "bytes": 7229,
+      "sha256": "4a1a5ff11d8c1cbb36fd70a847b89ccb885463073e1a83407c25e8f8dc15f34c"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-find-cow.m4a",
+      "bytes": 7113,
+      "sha256": "80cf2daab6993b9477512f261ae4e9c42511525871e8d342061bfaa0ab1846c6"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/01-welcome-barn-door-name.m4a",
+      "bytes": 8344,
+      "sha256": "bdd70a0f2d1ffcdec5cb170b1b9bf810f6d0a69cbbebb7febb765c8c0cbc4ecd"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/01-welcome-find-barn-door.m4a",
+      "bytes": 8794,
+      "sha256": "6c2b957df7b115630ae1ea0c123f55d55de8eea76de6c9382c92e68c711298dc"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-02-story.m4a",
+      "bytes": 18212,
+      "sha256": "be6c1419aa7251ed5d190f2054a60bec13db8920c584a4c5f25ab72470e948b1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/02-cow-calf-name.m4a",
+      "bytes": 13225,
+      "sha256": "025046d0d8db0ab6e55a26aeec25b312e93a2f57cacf5f46dba277e825235aaa"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/02-cow-find-calf.m4a",
+      "bytes": 7252,
+      "sha256": "0113d8abeaede0f1867fa757660fde623bb23d2982d7c16051c0ea10b259cd12"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/02-cow-cow-tail-name.m4a",
+      "bytes": 8590,
+      "sha256": "65bb30954ce086e2af72df18d07ca555cf5f02acacbc077b44edc4a4d901a4f9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/02-cow-find-cow-tail.m4a",
+      "bytes": 10214,
+      "sha256": "14a8697108b120749f4b7f8d902b77beedccb8b022ff6a69d7346853bd090677"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-03-story.m4a",
+      "bytes": 18943,
+      "sha256": "a54ccdad9f6a6733628cb3b7d171580f55bc86bcf8faa310e4fd53b89fcf0d2f"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-sheep-name.m4a",
+      "bytes": 7479,
+      "sha256": "90b6ffb9da2c378acb735f7afdb514bf55c822a2c3cf3ef9929bf88289c38d68"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-find-sheep.m4a",
+      "bytes": 7200,
+      "sha256": "4dacf0a500c87bb912650626bc7d7028cd3a030721f7a909de187048a5aae8c8"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/03-sheep-lamb-name.m4a",
+      "bytes": 13303,
+      "sha256": "cb72cfca3d65bbaff213827f2ae067f0eefb4d6e31e7f048547959c2da9458f4"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/03-sheep-find-lamb.m4a",
+      "bytes": 7199,
+      "sha256": "0c8b69f5771a996d9d06b6d14a6856a2684dc22956bd2923c15b589e5e28fcb7"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/03-sheep-grass-name.m4a",
+      "bytes": 12764,
+      "sha256": "c9122a46476d81620efc615e36d2b6b1b3f78c0d7676528281ad8ab9a760ece6"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/03-sheep-find-grass.m4a",
+      "bytes": 7560,
+      "sha256": "8c85fa6d5acf46617ac0289c863a17655bddc350ee23dfb22f25b2cb308754e6"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-04-story.m4a",
+      "bytes": 20868,
+      "sha256": "80d2ead768ff81ad0c7806792fab80b4def385afa1479ddda7179f9704509b72"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/04-chicken-hen-name.m4a",
+      "bytes": 7385,
+      "sha256": "a0ca41798e202b5d8c788847ac3faeee396be928b3b7103d8240432c05ed3f69"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/09-peeping-find-hen.m4a",
+      "bytes": 7321,
+      "sha256": "282352f9507f51a6f824870ae2f1c5d66eec78dccc184f10c6508695d4b6623b"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/04-chicken-chicks-name.m4a",
+      "bytes": 13333,
+      "sha256": "8c383c18dc3b4577555153304d7be7b6452f4d02cf480b9f8f854ba8732ed8ae"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/04-chicken-find-chicks.m4a",
+      "bytes": 7705,
+      "sha256": "c0988aaee8079b87509659941b467324139313cee6d7470ee49bf0da0c34fd05"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/04-chicken-feet-name.m4a",
+      "bytes": 12650,
+      "sha256": "9f70bc9fcb91b7568e9dc3687341501180b262d6764902e8ceafa7e3bc3d49c6"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-05-story.m4a",
+      "bytes": 19634,
+      "sha256": "ea05034e6454de0ac089b3b38427427cbd206a7db5b913dcd06765cefcb66626"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-ducks-name.m4a",
+      "bytes": 8197,
+      "sha256": "b907a6fe8401abc8c0f9503e6d2cf34608311e5b2582f656fa29f3b5885246be"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-find-ducks.m4a",
+      "bytes": 8055,
+      "sha256": "532bd48c1168d1d6c6c39ac3a78f60544e8b1d14a59882632215de9d80e4edba"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-water-name.m4a",
+      "bytes": 7058,
+      "sha256": "2f6fe64605b89e5ff393460aee03aede6cb4f70f10042bdc9dfdb04b16496fbc"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-find-water.m4a",
+      "bytes": 7723,
+      "sha256": "089660cde5c409919e1dab2708cb1b0e997e450c81d58ad51df1faee41f6a2fd"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-reeds-name.m4a",
+      "bytes": 8085,
+      "sha256": "0499169ac488ec8f0daf7645aafe92ac5784768e6da7bb35540dfa3be7885e79"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/05-pond-find-reeds.m4a",
+      "bytes": 7470,
+      "sha256": "e6cab267c78cc3440be61fbc281481c6c59b20b4af88db2c4c462b50cca98285"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-06-story.m4a",
+      "bytes": 25554,
+      "sha256": "fbc6fb447964899966c4cd1851e3154d4d16e1cabd008c212b13eb965e3fc100"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/06-horse-horse-name.m4a",
+      "bytes": 7630,
+      "sha256": "37f621174441ad7e56e81cb500866dbdf064a085d666a8764ef20941b3185ef4"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/06-horse-find-horse.m4a",
+      "bytes": 7038,
+      "sha256": "a411c5145d7f99394508655059ba4dd7be968c7f9a734a6d8c1d9a8348c07bf0"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/06-horse-ears-name.m4a",
+      "bytes": 9620,
+      "sha256": "91547f3b994d3b8e39af69575f75ee9e9ee7d5991de1cd4996602c61458efda6"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/06-horse-hoof-name.m4a",
+      "bytes": 7297,
+      "sha256": "bb64d45092abc742a86788b4f30b284bb1e69d52796cc96f10c5f00037af3a9f"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/06-horse-find-hoof.m4a",
+      "bytes": 8677,
+      "sha256": "5a86d0d1983ba39d3d38a161154ba1f62dda0a457f9b52d79891f742f454fb7c"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-07-story.m4a",
+      "bytes": 20143,
+      "sha256": "03d29722e4be1a4167ae8ff38a087cd4daa3581348fe12ed75a3a0fa18ce6697"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/07-water-stream-name.m4a",
+      "bytes": 10676,
+      "sha256": "386084a67a9c1a7db87e1649a7c823febd96d673acb2f2b1999fa4aec059c8de"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/07-water-find-stream.m4a",
+      "bytes": 9973,
+      "sha256": "d05e94b68ea39597fdc8191327ccf9fda1b1be0aefa76b5063d75a67ef3fecb1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/07-water-cow-name.m4a",
+      "bytes": 10120,
+      "sha256": "b285e15774243ccd7de18992a3fab1bdda8eb584d4ba601c334a908ddfc18c28"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/07-water-bucket-name.m4a",
+      "bytes": 8209,
+      "sha256": "804bede8c05c12c9cf47f3e24da469e1520533d241225cfa26e6a3ba0ca73970"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/07-water-find-bucket.m4a",
+      "bytes": 7620,
+      "sha256": "9ef3459af3f8aa3a8262ea0331f13711174b0092073ec36eb0331bfe606acef8"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-08-story.m4a",
+      "bytes": 26256,
+      "sha256": "96e73484fa3ea7ecea0364b144a2de30f5a9de8284223f7f39272669d9b15e5a"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/08-rain-rain-name.m4a",
+      "bytes": 10853,
+      "sha256": "927f2e58e05a40a5f16a173890c56a10ef066c3b1b2c22bc6d84c11efd990526"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/08-rain-find-rain.m4a",
+      "bytes": 9016,
+      "sha256": "8ed23d78b0d076aa82919c5ebbc63a45a47f60fb72ad1dbc167b95840c72fa9e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/08-rain-door-name.m4a",
+      "bytes": 12100,
+      "sha256": "0a9af01e710b4f8f01265faa5153383978cf32d126957da3b10948e0288992b1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/08-rain-find-door.m4a",
+      "bytes": 9036,
+      "sha256": "3e2136bba72d0d2113818662df92a063ec726cf0a79e30fbfce8694fe0f17ab9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/08-rain-sheep-name.m4a",
+      "bytes": 11774,
+      "sha256": "1b3486457e3b812ef828fae0a8b3d8efe9198907ffea9ace6ec6e5b10704b853"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-09-story.m4a",
+      "bytes": 22523,
+      "sha256": "4bd7fa80a6e24e55fd5ee99476a732707ec079d43f79de96cbd7d3ab18771f6f"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/09-peeping-chick-name.m4a",
+      "bytes": 11772,
+      "sha256": "714395cdc6689ee69f3455ab5df0d1d574bb5a9b9d91f0c50373f23cae6eb4ff"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-find-chick.m4a",
+      "bytes": 9231,
+      "sha256": "e16ee3182e803cc30168b9d2c3743a7df784a4fa96f60ea64ce8b4afaf21a94b"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/09-peeping-hen-name.m4a",
+      "bytes": 9624,
+      "sha256": "a2134dc07ac309b06b5e1c3581b1b22e1384c53cd3b29180af64be22b85a90a1"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/09-peeping-pip-ears-name.m4a",
+      "bytes": 9081,
+      "sha256": "7b4d7864cc9cba6e123ea4b671d143baad045383aa45a548e3e3e04e9fd7ebb9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-10-story.m4a",
+      "bytes": 25202,
+      "sha256": "0aa3cbb4828a5271ab935308a3582c52078705de12479e89ba500808aece91b0"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-gate-name.m4a",
+      "bytes": 9884,
+      "sha256": "3a9bd31ddc5ecf09d01b941ffc5847d44f845193ad45658c667a176475d8ad9e"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-find-gate.m4a",
+      "bytes": 8368,
+      "sha256": "c2421f00517f97fcb615ea8f2d2240c3a7f4393bacc86dc896dfc4677f2d85fc"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-chick-name.m4a",
+      "bytes": 9459,
+      "sha256": "fc6a1cfac1aadfd502486e427e95807272c275edb81f601fdd1e804725768f3b"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-family-name.m4a",
+      "bytes": 9630,
+      "sha256": "ab8f32740c24d432914798e80228d490e90c5192cc456607622ccb8e91da516d"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/10-space-find-family.m4a",
+      "bytes": 9672,
+      "sha256": "17cabaffe0531394c1cf0b4a189a693cb7829cdd8436c50cef2b564dbf12d8cf"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-11-story.m4a",
+      "bytes": 24026,
+      "sha256": "81c0c8324074e15c1977accab5bcf060b014db1f9d72ee80c4d32c0406654f1b"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-sheep-name.m4a",
+      "bytes": 9496,
+      "sha256": "6e7fa02166d9c0acfc1f753c41b41a597af4c0ae6cffb15c7630479b44ad5dc0"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-find-sheep.m4a",
+      "bytes": 9156,
+      "sha256": "30df6e4ec1abca3275d65ece266eb95d3091cb0690032a7e678710ffeaf7bfe9"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-cow-name.m4a",
+      "bytes": 10365,
+      "sha256": "df24031f762390139e8b2fb967d373199bdf3bcaa04fa41f9a7a969c25e95787"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-find-cow.m4a",
+      "bytes": 8962,
+      "sha256": "988a1e8d87a53378901bdf1874e85544953d810147161eb89ef02f47418933fa"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-shelter-name.m4a",
+      "bytes": 11084,
+      "sha256": "f7cfc04468b28ed67aab3bf52b9d98b25f3e7d5a0eed5dc102a106a77066128c"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/11-happy-farm-find-shelter.m4a",
+      "bytes": 9578,
+      "sha256": "35f693f98d0dd409589c7510dcc92b5cb87024086379a0a44be97f87a1a6f628"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/page-12-story.m4a",
+      "bytes": 17871,
+      "sha256": "73e300fb970a46d7ea2083fad8dee99a33ed668eefd7a3d7c24eb2ade4547544"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-farmer-name.m4a",
+      "bytes": 12564,
+      "sha256": "341475acbe88180c60c99566b35ec9d0646d8e6f9dbe773464f7039d034b2554"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/12-goodbye-find-farmer.m4a",
+      "bytes": 7922,
+      "sha256": "888724e5ce5f37e27b220e64c6699b80265fd08530600ff35840db08e4dd4880"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/shared-found.m4a",
+      "bytes": 7558,
+      "sha256": "d2b1f9e3e5255fe96e2f4a1dad0049dd74be58d8aee8fb947c683ffe37eec704"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/shared-there.m4a",
+      "bytes": 6693,
+      "sha256": "25bc8a94d6e73404de66925037d92566b4f37f0e235a6a751d47fe4de5e8be8c"
+    },
+    {
+      "url": "/books/a-day-at-the-farm/0.4.0/audio/shared-hint.m4a",
+      "bytes": 7784,
+      "sha256": "f7ecd8bdadbc1f40438cda6e2663b1a601890069ecca8dada5e6b71e48c32c46"
+    }
+  ]
+}
