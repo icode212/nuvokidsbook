@@ -1,0 +1,35 @@
+/* Shared NuvoKids palette: cream, forest, coral and soft gold. */
+:root {
+  --cream: #faf7ef;
+  --green: #2d5644;
+  --ink: #263e35;
+  --muted: #6b776b;
+  --line: #e2e3d5;
+  --amber: #e9bb55;
+  --coral: #de7057;
+  color: var(--ink);
+  background: var(--cream);
+}
+.brand { color: var(--ink); }
+.brand-kids { color: #e77359; }
+.brand-mark { background: var(--green); color: #fffdf4; }
+.brand-mark i, .studio-dot { color: #d6a832; }
+.hero h1 em { color: var(--coral); }
+.hero-copy > .eyebrow, .eyebrow { color: #6d7b66; }
+.hero-copy > p, .crew-transcript { color: var(--muted); }
+.button.primary {
+  background: var(--green);
+  color: #fffdf4;
+  box-shadow: 0 4px 0 #1f4034;
+}
+.button.primary:hover:not(:disabled) { background: #376650; }
+.button.primary:active:not(:disabled) { box-shadow: 0 2px 0 #1f4034; }
+.parent-button { background: #f0f1e5; border-color: #d5dbce; color: var(--green); }
+.button.quiet, .account-panel { background: #f0f1e5; border-color: var(--line); }
+.modal { background: #fffdf7; border-color: var(--line); }
+.art-sticker { background: #f6dfbb; color: #685a36; }
+.crew-hotspot > span { background: #fffdf7; color: var(--green); }
+.crew-hotspot:hover, .crew-hotspot:focus-visible { border-color: #fffdf7; background: #e9bb551a; }
+.crew-hotspot[aria-pressed=true] { border-color: #fffdf7; background: #e9bb5526; box-shadow: 0 0 0 3px #d6a832; }
+.status-badge.published { background: #e5eddf; color: #365a45; }
+input[type=checkbox], input[type=range] { accent-color: var(--green); }
