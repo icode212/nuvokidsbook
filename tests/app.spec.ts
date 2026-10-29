@@ -135,3 +135,23 @@ test('studio adds a fifth book, publishes, persists and archives without deletin
   await page.reload(); await page.getByLabel('Type grown up',{exact:true}).fill('grown up'); await page.getByRole('button',{name:'Continue',exact:true}).click();
   await expect(page.locator('.studio-row')).toHaveCount(2); await expect(page.getByText('archived',{exact:true})).toBeVisible();
 });
+
+test('studio imports a revision into the same book without changing publication status', async ({ page }) => {
+  const {farmBook}=await import('../content-source/a-day-at-the-farm/book');
+  await page.goto('/'); await parents(page); await page.getByRole('button',{name:'Book Studio',exact:true}).click();
+  const revised={...farmBook,title:'A Day at the Farm — revised',status:'draft',inventory:'/books/a-day-at-the-farm/0.9.0/inventory-v2.json'};
+  await page.locator('input[type="file"]').setInputFiles({name:'updated-book.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(revised))});
+  await expect(page.getByRole('status')).toContainText('Updated manifest imported');
+  await expect(page.getByRole('combobox',{name:'Status',exact:true})).toHaveValue('published');
+  await page.getByRole('button',{name:'All books',exact:true}).click();
+  await expect(page.getByRole('alertdialog',{name:'Unsaved changes'})).toBeVisible();
+  await page.getByRole('button',{name:'Keep editing',exact:true}).click();
+  await page.getByRole('button',{name:'Save book',exact:true}).click();
+  await expect(page.getByRole('status')).toHaveText('Book saved on this device.');
+  await page.reload(); await page.getByLabel('Type grown up',{exact:true}).fill('grown up'); await page.getByRole('button',{name:'Continue',exact:true}).click();
+  await expect(page.locator('.studio-row')).toHaveCount(1);
+  await page.getByRole('button',{name:/A Day at the Farm — revised Nuvo/}).click();
+  await expect(page.getByRole('combobox',{name:'Status',exact:true})).toHaveValue('published');
+  await expect(page.getByLabel('Download inventory path',{exact:false})).toHaveValue(revised.inventory);
+  expect(JSON.parse(await page.getByLabel('Scene manifest JSON').inputValue())).toHaveLength(farmBook.scenes.length);
+});

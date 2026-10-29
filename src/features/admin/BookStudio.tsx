@@ -45,7 +45,14 @@ export default function BookStudio({ onExit, onChanged, onPreview }: { onExit: (
   }
   async function importFile(file?: File) {
     if (!file) return; setError('');
-    try { if (file.size > 2_000_000) throw new Error('Please use a manifest under 2 MB. Images belong in the asset pack.'); const book = bookSchema.parse(JSON.parse(await file.text())); const existing = books.find(b => b.id === book.id); if (existing) throw new Error('This ID already exists. Open that book and edit its scenes instead.'); edit({ ...book, status: 'draft' }, true); }
+    try {
+      if (file.size > 2_000_000) throw new Error('Please use a manifest under 2 MB. Images belong in the asset pack.');
+      const book = bookSchema.parse(JSON.parse(await file.text()));
+      const existing = books.find(b => b.id === book.id);
+      edit({ ...book, status: existing?.status ?? 'draft' }, !existing);
+      setDirty(true);
+      setMessage(existing ? 'Updated manifest imported. Review it, then save to update this book. Its publication status is unchanged.' : 'New book imported as a draft. Review it before saving.');
+    }
     catch (e) { setError(e instanceof Error ? e.message : 'This manifest is invalid.'); }
   }
   const shown = books.filter(b => (filter === 'all' || b.status === filter) && `${b.title} ${b.series} ${b.id}`.toLowerCase().includes(query.toLowerCase()));
