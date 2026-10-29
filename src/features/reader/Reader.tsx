@@ -20,6 +20,7 @@ export default function Reader({ book, settings, onBack, paused = false, mediaBo
   const activeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const promptTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const scene = page > 0 ? book.scenes[page - 1] : undefined;
+  const bedtime = book.readingMode === 'bedtime';
   const narration = settings.narration && !muted; const sounds = settings.sounds && !muted;
   useEffect(() => { void readProgress(book.id).then(p => { if (p > 0 && p <= book.scenes.length) setFeedback(`You last explored page ${p}. Start again or use the page picker.`); }).catch(() => {}); }, [book.id, book.scenes.length]);
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function Reader({ book, settings, onBack, paused = false, mediaBo
   }
   function select(target: Target) {
     clearTimeout(activeTimer.current); clearTimeout(promptTimer.current);
-    setActive(target.id); activeTimer.current = setTimeout(() => setActive(''), 900);
+    if (!bedtime && !scene?.still) { setActive(target.id); activeTimer.current = setTimeout(() => setActive(''), 900); }
     if (mode === 'find' && requested && scene) {
       const result = findResponse(target.id, requested.id); setFeedback(result.text); setLabel('');
       void audio.current?.play(narration ? result.text : null, sounds && result.correct);
@@ -58,15 +59,15 @@ export default function Reader({ book, settings, onBack, paused = false, mediaBo
     }
   }
   const last = page === book.scenes.length;
-  return <main className="reader" data-motion={settings.motion ? 'on' : 'off'}>
+  return <main className="reader" data-reading-mode={book.readingMode ?? 'standard'} data-motion={settings.motion && !bedtime && !scene?.still ? 'on' : 'off'}>
     <div className="reader-heading"><button className="text-button" onClick={onBack}><Home size={19}/><span>Bookshelf</span></button><div><small>{book.series}</small><h1>{book.title}</h1></div><button className="icon-button" aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} onClick={() => setMuted(!muted)}>{muted ? <VolumeX/> : <Volume2/>}</button></div>
     {!scene ? <section className="reader-cover"><BookImage bookId={mediaBookId} src={book.cover} alt={`${book.title} cover`}/><div className="reader-cover-shade"/><div className="reader-cover-copy"><span className="eyebrow light">{book.series}</span><h2>{book.title}</h2><p>{book.openingPrompt ?? book.summary}</p><button className="button amber" onClick={() => navigate(1)}>Open the book <ArrowRight size={20}/></button><small>{book.scenes.length} story pages · By {book.creator}</small></div></section> : <>
-      <div className="reader-tools"><div className="segmented" aria-label="Play mode"><button className={mode === 'explore' ? 'selected' : ''} aria-pressed={mode === 'explore'} onClick={() => switchMode('explore')}><Hand size={17}/>Explore</button><button className={mode === 'find' ? 'selected' : ''} aria-pressed={mode === 'find'} disabled={!scene.objects.some(o => o.findPrompt)} onClick={() => switchMode('find')}><Search size={17}/>Find it</button></div><span className="tap-hint">{mode === 'find' ? 'Look, listen & find' : 'Tap a picture to discover'}</span><button className="text-button" onClick={() => { audio.current?.stop(); clearTimeout(promptTimer.current); setPagesOpen(true); }}><Grid2X2 size={17}/><span>Pages</span></button></div>
+      <div className="reader-tools">{bedtime ? <span className="eyebrow">Bedtime story</span> : <div className="segmented" aria-label="Play mode"><button className={mode === 'explore' ? 'selected' : ''} aria-pressed={mode === 'explore'} onClick={() => switchMode('explore')}><Hand size={17}/>Explore</button><button className={mode === 'find' ? 'selected' : ''} aria-pressed={mode === 'find'} disabled={!scene.objects.some(o => o.findPrompt)} onClick={() => switchMode('find')}><Search size={17}/>Find it</button></div>}<span className="tap-hint">{bedtime ? scene.still ? 'Rest here as long as you like' : 'Tap gently, or just listen' : mode === 'find' ? 'Look, listen & find' : 'Tap a picture to discover'}</span><button className="text-button" onClick={() => { audio.current?.stop(); clearTimeout(promptTimer.current); setPagesOpen(true); }}><Grid2X2 size={17}/><span>Pages</span></button></div>
       <section className="scene-frame" aria-label={scene.title}>
         <div className="scene-canvas" style={{ aspectRatio: scene.aspectRatio, '--scene-aspect': scene.aspectRatio } as CSSProperties}>
           <BookImage bookId={mediaBookId} src={scene.image} alt={`${scene.title}. ${scene.storyText}`} className="scene-background" onLoad={() => setLoaded(true)}/>
-          {loaded ? scene.objects.map(target => <button key={target.id} className={`hotspot ${active === target.id ? 'active' : ''} ${scene.renderMode === 'layered' ? 'layered' : ''}`} data-animation={target.animation} aria-label={target.label} style={{ left: `${target.rect.x * 100}%`, top: `${target.rect.y * 100}%`, width: `${target.rect.width * 100}%`, height: `${target.rect.height * 100}%` }} onClick={() => select(target)}>{target.image ? <BookImage bookId={mediaBookId} src={target.image} alt=""/> : <span className="hotspot-dot"/>}{active === target.id ? <span className="tap-ring"/> : null}</button>) : null}
-          {label && settings.labels && mode === 'explore' ? <span className="object-label" aria-live="polite">{label}</span> : null}
+          {loaded ? scene.objects.map(target => <button key={target.id} className={`hotspot ${active === target.id ? 'active' : ''} ${scene.renderMode === 'layered' ? 'layered' : ''}`} data-animation={target.animation} aria-label={target.label} style={{ left: `${target.rect.x * 100}%`, top: `${target.rect.y * 100}%`, width: `${target.rect.width * 100}%`, height: `${target.rect.height * 100}%` }} onClick={() => select(target)}>{target.image ? <BookImage bookId={mediaBookId} src={target.image} alt=""/> : scene.still ? null : <span className="hotspot-dot"/>}{active === target.id ? <span className="tap-ring"/> : null}</button>) : null}
+          {label && settings.labels && mode === 'explore' && !scene.still ? <span className="object-label" aria-live="polite">{label}</span> : null}
           {feedback && mode === 'find' ? <div className="find-feedback" role="status">{feedback === 'You found it!' ? <Check size={20}/> : <Search size={18}/>} {feedback}</div> : null}
         </div>
       </section>

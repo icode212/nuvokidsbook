@@ -40,3 +40,4 @@
 .header-link.current, .icon-button, .text-button { color: var(--ink); }
 @media (max-width: 650px) { .brand { font-size: 30px; } }
 input[type=checkbox], input[type=range] { accent-color: var(--green); }
+.reader[data-reading-mode=bedtime] .hotspot-dot { right: auto; bottom: auto; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 8px; height: 8px; opacity: .5; }

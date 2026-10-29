@@ -155,3 +155,21 @@ test('studio imports a revision into the same book without changing publication 
   await expect(page.getByLabel('Download inventory path',{exact:false})).toHaveValue(revised.inventory);
   expect(JSON.parse(await page.getByLabel('Scene manifest JSON').inputValue())).toHaveLength(farmBook.scenes.length);
 });
+
+test('bedtime metadata survives studio save and renders a still page without challenges',async({page})=>{
+  const {farmBook}=await import('../content-source/a-day-at-the-farm/book');
+  const scene={...farmBook.scenes[0],still:true};
+  const book={...farmBook,readingMode:'bedtime',scenes:[scene]};
+  await page.goto('/');await parents(page);await page.getByRole('button',{name:'Book Studio',exact:true}).click();
+  await page.locator('input[type="file"]').setInputFiles({name:'bedtime-book.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(book))});
+  await page.getByRole('button',{name:'Save book',exact:true}).click();
+  await expect(page.getByRole('status')).toHaveText('Book saved on this device.');
+  await page.getByRole('button',{name:'Preview',exact:true}).click();
+  await page.getByRole('button',{name:'Open the book',exact:true}).click();
+  await expect(page.locator('.reader')).toHaveAttribute('data-reading-mode','bedtime');
+  await expect(page.locator('.reader')).toHaveAttribute('data-motion','off');
+  await expect(page.getByRole('button',{name:'Find it',exact:true})).toHaveCount(0);
+  await expect(page.getByText('Rest here as long as you like',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:scene.objects[0].label,exact:true}).click();
+  await expect(page.locator('.hotspot-dot,.hotspot.active,.tap-ring,.object-label')).toHaveCount(0);
+});

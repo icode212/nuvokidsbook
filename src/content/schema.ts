@@ -10,11 +10,13 @@ export const objectSchema = z.object({
   soundFile: mediaPath.optional(),
 });
 export const sceneSchema = z.object({
+  still: z.boolean().optional(),
   id: z.string(), pageNumber: z.number().int().positive(), title: z.string().min(1), storyText: z.string().min(1),
   storyNarrationAssetId: z.string(), image: mediaPath, aspectRatio: z.number().positive(),
   renderMode: z.enum(['static', 'layered']), objects: z.array(objectSchema).min(1),
 });
 export const bookSchema = z.object({
+  readingMode: z.enum(['standard', 'bedtime']).optional(),
   schemaVersion: z.literal(1), id: z.string().regex(/^[a-z0-9-]+$/), contentVersion: z.string().regex(/^\d+\.\d+\.\d+$/),
   title: z.string().min(1).max(100), series: z.string().max(100), creator: z.string().max(100),
   summary: z.string().min(1).max(500), locale: z.string(), ageRange: z.string(),
