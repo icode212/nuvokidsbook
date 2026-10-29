@@ -2,9 +2,20 @@ import 'fake-indexeddb/auto';
 import { afterEach, expect, it, vi } from 'vitest';
 import { farmBook } from '../../content-source/a-day-at-the-farm/book';
 import { database } from './storage';
-import { downloadBook, downloadRecord, removeDownload, savedMedia, type DownloadRecord } from './downloads';
+import { downloadBook, downloadRecord, downloadedBooks, removeDownload, savedMedia, type DownloadRecord } from './downloads';
 import { setSessionOwner } from './session';
 afterEach(() => {setSessionOwner(null);vi.unstubAllGlobals();});
+it('keeps admin previews separate from purchased books and hides them from the library',async()=>{
+  const bytes=new TextEncoder().encode('preview image');const sha256=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+  const book={...structuredClone(farmBook),id:'draft-preview',status:'draft' as const,access:'paid' as const,narrationAssets:undefined,cover:'/private/preview.webp',scenes:[{...farmBook.scenes[0],image:'/private/preview.webp',objects:farmBook.scenes[0].objects.map(o=>({...o,soundFile:undefined}))}]};
+  vi.stubGlobal('navigator',{serviceWorker:{getRegistration:async()=>({active:{}})}});vi.stubGlobal('fetch',vi.fn(async()=>new Response(bytes)));
+  setSessionOwner('admin');
+  await downloadBook(book,new AbortController().signal,()=>{},{owner:'admin',grant:'admin-preview-grant',preview:true,inventory:{bookId:book.id,contentVersion:book.contentVersion,assets:[{url:book.cover,bytes:bytes.length,sha256}]}});
+  expect(await downloadRecord(book.id)).toBeUndefined();expect((await downloadedBooks()).some(r=>r.book.id===book.id)).toBe(false);
+  expect(await(await savedMedia('preview:'+book.id,book.cover))!.text()).toBe('preview image');
+  setSessionOwner('parent');expect(await savedMedia('preview:'+book.id,book.cover)).toBeUndefined();
+  setSessionOwner('admin');await removeDownload('preview:'+book.id);
+});
 it('keeps paid downloads isolated by account and rejects unverified downloads',async()=>{
   const paid={...structuredClone(farmBook),id:'paid-isolation',access:'paid' as const};
   await expect(downloadBook(paid,new AbortController().signal,()=>{})).rejects.toThrow('ownership');

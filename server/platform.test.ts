@@ -44,3 +44,18 @@ it('issues a download grant only for an owned published paid book with private m
   const response=await handlePlatform(new Request('https://books.test/api/books/paid-book/download',{method:'POST',headers:{Authorization:'Bearer verified-session'}}),configured,{fetch:fetcher as typeof fetch});
   expect(response.status).toBe(200);const data=await response.json() as {grant:string};expect(data.grant.split('.')).toHaveLength(2);expect(response.headers.get('cache-control')).toBe('no-store');
 });
+it('allows an admin to preview a draft without granting ownership, and rejects ordinary parents',async()=>{
+  const prefix='/private/books/paid-draft/1.0.0/';
+  const book={...structuredClone(farmBook),id:'paid-draft',contentVersion:'1.0.0',status:'draft',access:'paid',cover:'/books/paid-draft/1.0.0/cover.webp',inventory:prefix+'inventory.json',narrationAssets:undefined,scenes:[{...farmBook.scenes[0],image:prefix+'page.webp',objects:farmBook.scenes[0].objects.map(o=>({...o,soundFile:undefined}))}]};
+  const inventory={bookId:book.id,contentVersion:book.contentVersion,assets:[{url:book.cover},{url:prefix+'page.webp'}]};
+  const configured={...env,PRIVATE_BOOKS:{get:vi.fn(async()=>({body:new Response(JSON.stringify(inventory)).body!,httpEtag:'etag'}))}};
+  let isAdmin=false;
+  const fetcher=vi.fn(async(input:RequestInfo|URL)=>new Response(JSON.stringify(String(input).includes('/auth/v1/user')?{id:'admin'}:String(input).includes('platform_admins')?(isAdmin?[{user_id:'admin'}]:[]):[{manifest:book}])));
+  const request=()=>new Request('https://books.test/api/books/paid-draft/preview',{method:'POST',headers:{Authorization:'Bearer verified-session'}});
+  expect((await handlePlatform(request(),configured,{fetch:fetcher as typeof fetch})).status).toBe(403);
+  expect(configured.PRIVATE_BOOKS.get).not.toHaveBeenCalled();
+  isAdmin=true;const response=await handlePlatform(request(),configured,{fetch:fetcher as typeof fetch});
+  expect(response.status).toBe(200);expect((await response.json() as {book:{status:string}}).book.status).toBe('draft');
+  expect(fetcher.mock.calls.every(([input])=>!String(input).includes('book_entitlements'))).toBe(true);
+  expect(fetcher.mock.calls.every(([,options])=>!options || !('method' in options))).toBe(true);
+});

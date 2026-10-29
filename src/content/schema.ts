@@ -18,6 +18,7 @@ export const bookSchema = z.object({
   schemaVersion: z.literal(1), id: z.string().regex(/^[a-z0-9-]+$/), contentVersion: z.string().regex(/^\d+\.\d+\.\d+$/),
   title: z.string().min(1).max(100), series: z.string().max(100), creator: z.string().max(100),
   summary: z.string().min(1).max(500), locale: z.string(), ageRange: z.string(),
+  openingPrompt: z.string().min(1).max(200).optional(), endingText: z.string().min(1).max(300).optional(),
   kind: z.enum(['story', 'discovery']), access: z.enum(['free', 'paid']), status: z.enum(['draft', 'published', 'archived']),
   sortOrder: z.number().int(), cover: mediaPath, inventory: mediaPath.optional(),
   assetStatus: z.enum(['development', 'reviewed']), scenes: z.array(sceneSchema),

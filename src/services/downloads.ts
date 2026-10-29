@@ -5,7 +5,7 @@ import { mediaURL } from './platform';
 import { sessionOwner, sessionEpoch, trackTransfer } from './session';
 const assetSchema = z.object({ url: z.string().startsWith('/').refine(s => !s.startsWith('//') && !s.includes('..')), bytes: z.number().int().positive(), sha256: z.string().regex(/^[a-f0-9]{64}$/) });
 const inventorySchema = z.object({ bookId: z.string(), contentVersion: z.string(), assets: z.array(assetSchema).min(1) });
-export interface DownloadRecord { key: string; version: string; bytes: number; urls: string[]; book: Book; completedAt: string; ownerId?: string }
+export interface DownloadRecord { key: string; version: string; bytes: number; urls: string[]; book: Book; completedAt: string; ownerId?: string; preview?: boolean }
 export const downloadRecord = async (id: string): Promise<DownloadRecord | undefined> => {
   const db = await database(); const free = await db.get('downloads',id) as DownloadRecord | undefined;
   if (free?.book.access === 'free') return free;
@@ -20,7 +20,20 @@ export async function savedMedia(id: string, url: string): Promise<Blob | undefi
   const epoch=sessionEpoch(); const blob=await (await database()).get('media', mediaKey(record.key, record.version, url));
   return record.book.access==='free' || (epoch===sessionEpoch() && record.ownerId===sessionOwner()) ? blob : undefined;
 }
-interface Authorization {inventory:unknown;grant:string;owner:string}
+interface Authorization {inventory:unknown;grant:string;owner:string;preview?:boolean}
+export async function downloadAdminPreviewBook(book:Book,signal:AbortSignal,progress:(done:number,total:number)=>void) {
+  const owner=sessionOwner(),epoch=sessionEpoch();
+  if (!owner) throw new Error('Sign in as a platform admin to preview this book.');
+  const {cloudClient}=await import('./catalogue');const cloud=await cloudClient();
+  const {data:{session}}=await cloud.auth.getSession();
+  if (!session || session.user.id!==owner) throw new Error('Sign in again to preview this book.');
+  const response=await fetch(`/api/books/${encodeURIComponent(book.id)}/preview`,{method:'POST',signal,headers:{Authorization:`Bearer ${session.access_token}`}});
+  const result=await response.json();if(!response.ok)throw new Error(result.error??'Preview unavailable.');
+  if(owner!==sessionOwner() || epoch!==sessionEpoch())throw new DOMException('Account changed','AbortError');
+  const saved=bookSchema.parse(result.book);
+  if(saved.id!==book.id || saved.contentVersion!==book.contentVersion)throw new Error('Save this book version before previewing its private media.');
+  return downloadBook(book,signal,progress,{inventory:result.inventory,grant:result.grant,owner,preview:true});
+}
 export async function downloadOwnedBook(id: string, signal: AbortSignal, progress: (done:number,total:number)=>void) {
   const owner = sessionOwner(), epoch = sessionEpoch();
   if (!owner) throw new Error('Sign in to restore this book.');
@@ -41,7 +54,7 @@ export async function downloadBook(book: Book, originalSignal: AbortSignal, prog
   if (originalSignal.aborted) controller.abort();
   const untrack = trackTransfer(controller); const signal = controller.signal;
   const assertCurrent = () => { signal.throwIfAborted(); if (paid && (sessionOwner() !== owner || sessionEpoch() !== epoch)) throw new DOMException('Account changed','AbortError'); };
-  const recordKey = paid ? `owner:${owner}:${book.id}` : book.id;
+  const recordKey = paid ? `owner:${owner}:${authorization?.preview ? 'preview:' : ''}${book.id}` : book.id;
   try {
   if (!book.inventory) throw new Error('This book does not have a download pack yet.');
   if (!('serviceWorker' in navigator) || !(await navigator.serviceWorker.getRegistration())?.active) throw new Error('Offline saving is available in the installed build or production preview. Reload once and try again.');
@@ -86,7 +99,7 @@ export async function downloadBook(book: Book, originalSignal: AbortSignal, prog
   const failure = results.find(r => r.status === 'rejected');
   if (failure?.status === 'rejected') throw failure.reason;
   assertCurrent();
-  const record: DownloadRecord = { key: recordKey, version: book.contentVersion, bytes: total, urls: inventory.assets.map(a => a.url), book, completedAt: new Date().toISOString(), ...(paid ? {ownerId:owner!} : {}) };
+  const record: DownloadRecord = { key: recordKey, version: book.contentVersion, bytes: total, urls: inventory.assets.map(a => a.url), book, completedAt: new Date().toISOString(), ...(paid ? {ownerId:owner!} : {}), ...(authorization?.preview ? {preview:true} : {}) };
   await db.put('downloads', record);
   return record;
   } finally { untrack(); originalSignal.removeEventListener('abort',cancel); }
@@ -98,5 +111,5 @@ export async function removeDownload(id: string) {
   for (const key of keys) if (String(key).startsWith(`${recordKey}@`)) await tx.objectStore('media').delete(key);
   await tx.objectStore('downloads').delete(recordKey); await tx.done;
 }
-export async function downloadedBooks(): Promise<DownloadRecord[]> { const all = await (await database()).getAll('downloads') as DownloadRecord[]; return all.filter(record=>record.book.access === 'free' || (record.ownerId && record.ownerId === sessionOwner())); }
+export async function downloadedBooks(): Promise<DownloadRecord[]> { const all = await (await database()).getAll('downloads') as DownloadRecord[]; return all.filter(record=>!record.preview && (record.book.access === 'free' || (record.ownerId && record.ownerId === sessionOwner()))); }
 export const formatBytes = (bytes: number) => `${(bytes / 1024 / 1024).toFixed(1)} MB`;

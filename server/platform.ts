@@ -40,7 +40,7 @@ export async function handlePlatform(request: Request, env: Env, runtime: Runtim
   const route = url.pathname.replace(/^\/api/, '');
   // No environment flag, caller payload or valid token can enable checkout.
   if (/^\/(checkout|payments|webhook)(\/|$)/.test(route)) return json({error:'Payments are disabled.'},403);
-  if (request.method !== 'GET' && !(request.method === 'POST' && /^\/books\/[a-z0-9-]+\/download$/.test(route))) return json({error:'Method not allowed'},405);
+  if (request.method !== 'GET' && !(request.method === 'POST' && /^\/books\/[a-z0-9-]+\/(download|preview)$/.test(route))) return json({error:'Method not allowed'},405);
   if (!env.SUPABASE_URL || !env.SUPABASE_PUBLIC_KEY) return json({error:'Platform configuration required'},503);
   if (route === '/config') return json({supabaseUrl:env.SUPABASE_URL,publicKey:env.SUPABASE_PUBLIC_KEY,assetBase:'/api/assets/free',paymentsEnabled:false},200,'public, max-age=300');
   const rest = async (path: string, token = '') => {
@@ -78,17 +78,22 @@ export async function handlePlatform(request: Request, env: Env, runtime: Runtim
       const headers = new Headers(response.headers); headers.set('Cache-Control','private, no-store');
       return new Response(response.body,{headers});
     }
-    const match = route.match(/^\/books\/([a-z0-9-]+)\/download$/);
+    const match = route.match(/^\/books\/([a-z0-9-]+)\/(download|preview)$/);
     if (match && request.method === 'POST') {
       if (!env.DOWNLOAD_SIGNING_SECRET || env.DOWNLOAD_SIGNING_SECRET.length < 32) return json({error:'Downloads are not configured'},503);
       const token = bearer(request); if (!token) return json({error:'Sign in to restore your books'},401);
       const userResponse = await fetcher(env.SUPABASE_URL+'/auth/v1/user',{headers:{apikey:env.SUPABASE_PUBLIC_KEY,Authorization:`Bearer ${token}`}});
       if (!userResponse.ok) return json({error:'Sign in again to download'},401);
       const user = await userResponse.json() as {id?: string}; if (!user.id) return json({error:'Sign in again'},401);
-      const id = match[1];
-      const entitlements = await rest(`book_entitlements?select=book_id&book_id=eq.${id}&status=eq.active&user_id=eq.${encodeURIComponent(user.id)}`,token);
-      if (!entitlements.length) return json({error:'This book is not owned by this account'},403);
-      const rows = await rest(`books?select=manifest&id=eq.${id}&status=eq.published&access=eq.paid`,token);
+      const id = match[1], preview = match[2] === 'preview';
+      if (preview) {
+        const admins = await rest(`platform_admins?select=user_id&user_id=eq.${encodeURIComponent(user.id)}`,token);
+        if (!admins.some((row:{user_id:string})=>row.user_id === user.id)) return json({error:'Platform admin access required'},403);
+      } else {
+        const entitlements = await rest(`book_entitlements?select=book_id&book_id=eq.${id}&status=eq.active&user_id=eq.${encodeURIComponent(user.id)}`,token);
+        if (!entitlements.length) return json({error:'This book is not owned by this account'},403);
+      }
+      const rows = await rest(`books?select=manifest&id=eq.${id}&${preview ? '' : 'status=eq.published&'}access=eq.paid`,token);
       if (!rows.length) return json({error:'Book unavailable'},404);
       const book = bookSchema.parse(rows[0].manifest);
       const prefix = `/private/books/${id}/${book.contentVersion}/`;
